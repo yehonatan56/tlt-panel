@@ -23,16 +23,19 @@ const sendMail = (text) => {
       name: "Yehonatan Cohen",
       address: process.env.EMAIL,
     },
-    to: process.env.EMAIL, // "eyalcohen51@gmail.com",
+    to: process.env.EMAIL_EYAL,
     subject: "Sending Email using Node.js",
     text,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
+      return { message: "Email not sent", error };
     } else {
       console.log("Email sent: " + info.response);
     }
   });
+
+  return { message: "Email sent" };
 };
 module.exports = sendMail;
