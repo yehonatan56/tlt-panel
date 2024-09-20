@@ -2,17 +2,10 @@ const nodeMailer = require("nodemailer");
 
 const transporter = nodeMailer.createTransport({
   service: "gmail",
-  // host: "smtp.gmail.com",
-  // port: 587,
-  // secure: false,
+
   auth: {
     user: process.env.EMAIL,
     pass: process.env.PASSWORD,
-    // type: "OAuth2",
-    // client_id:
-    //   "1032065480463-098cs8pvfunhacbq4iaqj14kstr40ta3.apps.googleusercontent.com",
-    // client_secret: "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",
-    // access_token: "",
   },
   //
 });
