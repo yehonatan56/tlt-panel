@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const linkModel = require("../models/links");
+const sendMail = require("../config/mail");
 router.post("/", async (req, res) => {
   try {
     const { link } = req.body;
@@ -18,7 +19,10 @@ router.post("/purchase", async (req, res) => {
       { link },
       { $inc: { purchases: 1 } },
     );
-    res.json(linkDoc);
+    res.json({
+      mail: sendMail(`Someone bought your product: ${link}`),
+      linkDoc,
+    });
     // todo: send full linkDoc back
   } catch (err) {
     res.status(400).json(err);
