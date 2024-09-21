@@ -19,10 +19,10 @@ router.post("/purchase", async (req, res) => {
       { link },
       { $inc: { purchases: 1 } },
     );
-    res.json({
-      mail: sendMail(`Someone bought your product: ${link}`),
-      linkDoc,
-    });
+    sendMail(`Someone bought your product: ${link}`),
+      res.json({
+        linkDoc,
+      });
     // todo: send full linkDoc back
   } catch (err) {
     res.status(400).json(err);
