@@ -5,11 +5,11 @@ const userModel = require("../models/users");
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "name",
+      usernameField: "username",
       passwordField: "password",
     },
-    async function verify(name, password, cb) {
-      const user = await userModel.findOne({ name });
+    async function verify(username, password, cb) {
+      const user = await userModel.findOne({ username });
 
       if (!user) return cb(null, false);
       await bcrypt.compare(password, user.password, (err, result) => {

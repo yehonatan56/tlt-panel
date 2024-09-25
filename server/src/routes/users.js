@@ -6,9 +6,9 @@ router.get("/", (req, res) => {
   res.send("Hello from users route");
 });
 router.post("/", async (req, res) => {
-  const { name, password } = req.body;
+  const { username, password } = req.body;
   try {
-    const user = new userModel({ name, password });
+    const user = new userModel({ username, password });
     await user.save();
     res.json(user);
   } catch (err) {

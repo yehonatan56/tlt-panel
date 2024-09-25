@@ -7,7 +7,7 @@ let user = "";
 router.post(
   "/login",
   (req, res, next) => {
-    user = req.body.name;
+    user = req.body.username;
     next();
   },
   passport.authenticate("local", {
@@ -17,7 +17,7 @@ router.post(
 );
 
 router.get("/ok", async (req, res) => {
-  res.json({ user: await userModel.findOne({ name: user }) });
+  res.json({ user: await userModel.findOne({ username: user }) });
 });
 router.get("/err", (req, res) => res.status(400).send("kkjklk"));
 
