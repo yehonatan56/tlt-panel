@@ -6,9 +6,14 @@ import { addLinkLogic } from "../../logic/links.ts";
 const AddLink = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [link, setLink] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const submitLink = async () => {
     console.log(link);
     const res = await addLinkLogic(link);
+    if (res.code === 11000) {
+      setError("Link already exists");
+      return;
+    }
     console.log(res);
     close();
   };
@@ -21,6 +26,7 @@ const AddLink = () => {
           onChange={(e) => setLink(e.target.value)}
           style={{ width: "100%" }}
         />
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <Button onClick={() => submitLink()}>Submit</Button>
       </Modal>
 
