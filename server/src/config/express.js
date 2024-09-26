@@ -6,13 +6,13 @@ const dotenv = require("dotenv");
 const session = require("express-session");
 const passport = require("passport");
 const routes = require("../routes/index");
-const db = require("./db");
-dotenv.config();
 const { public } = require("../paths");
 require("./passport");
-module.exports = async (app) => {
+
+dotenv.config();
+
+module.exports = (app) => {
   app.use(cors());
-  await db();
   app.use(
     session({
       secret: process.env.SECRET,
@@ -27,5 +27,6 @@ module.exports = async (app) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(express.static(public));
   app.use(morgan("dev"));
+
   routes(app);
 };

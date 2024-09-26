@@ -8,4 +8,5 @@ const userHook = (schema) => {
     next();
   });
 };
+
 module.exports = userHook;

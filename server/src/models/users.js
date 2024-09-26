@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const userHook = require("../hooks/user");
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -20,4 +21,5 @@ const userSchema = new mongoose.Schema({
 userHook(userSchema);
 
 const UserModel = mongoose.model("users", userSchema);
+
 module.exports = UserModel;

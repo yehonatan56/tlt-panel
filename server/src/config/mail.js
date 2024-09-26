@@ -2,35 +2,36 @@ const nodeMailer = require("nodemailer");
 
 const transporter = nodeMailer.createTransport({
   service: "gmail",
-  port: 465,
-  secure: true,
+  // port: 465,
+  // secure: true\=
   auth: {
     user: process.env.EMAIL,
     pass: process.env.PASSWORD, // Use the generated App Password here
   },
-  tls: {
-    ciphers: "SSLv3",
-  },
+  // tls: {
+  //   ciphers: "SSLv3",
+  // },
 });
 
-const sendMail = (text) => {
+const sendMail = async (text) => {
   const mailOptions = {
     from: {
-      name: "Yehonatan Cohen",
+      name: "יהונתן כהן",
       address: process.env.EMAIL,
     },
     to: process.env.EMAIL_EYAL,
-    subject: "Sending Email using Node.js",
+    subject: "מעקב האוצרות האבודים",
     text,
   };
-  transporter.sendMail(mailOptions, (error, info) => {
+
+  return transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
+      console.error(error);
       return { message: "Email not sent", error };
-    } else {
-      console.log("Email sent: " + info.response);
-      return { message: "Email sent" };
     }
+
+    console.log("Email sent: " + info.response);
+    return { message: "Email sent" };
   });
 };
 

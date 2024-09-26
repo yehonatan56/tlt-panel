@@ -1,9 +1,13 @@
 const express = require("express");
-const app = express();
 const configExpress = require("./config/express");
+const db = require("./config/db");
 
-configExpress(app);
+const app = express();
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+db().then(() => {
+  configExpress(app);
+
+  app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+  });
 });
