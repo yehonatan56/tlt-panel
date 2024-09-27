@@ -4,6 +4,7 @@ export const addLinkRequest = async (link: string) => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(linkObj),
+    credentials: "include",
   })
     .then((res) => res.json())
     .then((data) => data);
