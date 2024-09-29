@@ -15,7 +15,11 @@ export const login = async (puser: user) => {
 
     // Parse the JSON data
     const data = await response.json();
-    return data;
+    localStorage.setItem("token", data.token);
+    return {
+      isAuth: true,
+      token: data.token,
+    };
   } catch (error) {
     console.error("Login request failed", error);
     throw error; // Re-throw error to handle it further upstream

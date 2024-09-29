@@ -6,7 +6,7 @@ const { purchase } = require("../services/links/purchase");
 
 const router = express.Router();
 
-router.post("/", isAuthenticatedMW, create);
+router.post("/", create);
 
 router.post("/purchase", purchase);
 

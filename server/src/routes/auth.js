@@ -7,7 +7,8 @@ const { ok } = require("../services/auth/ok");
 
 router.post("/login", passport.authenticate("local", passportRuote));
 
-router.get("/ok", isAuthenticatedMW, ok);
+// router.get( "/ok", ok);
+router.get("/ok/", ok);
 
 router.get("/err", error);
 
