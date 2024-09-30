@@ -1,18 +1,29 @@
+import { ReactNode } from "react";
 import Logo from "./logo.tsx";
+import Navbar from "./navbar.tsx";
 
-const Header = () => {
+interface HeaderProps {
+  children: ReactNode;
+}
+
+const Header = ({ children }: HeaderProps) => {
   return (
-    <header
-      style={{
-        display: "flex",
-        backgroundColor: "black",
-        justifyContent: "center",
-        padding: "1rem",
-        borderBottom: "1px solid #ccc",
-      }}
-    >
-      <Logo />
-    </header>
+    <>
+      <header
+        style={{
+          backgroundColor: "black",
+          padding: "1rem",
+          borderBottom: "1px solid #ccc",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Logo />
+        <Navbar />
+      </header>
+      {children}
+    </>
   );
 };
 export default Header;

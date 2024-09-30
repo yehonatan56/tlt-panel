@@ -4,7 +4,6 @@ module.exports.create = async (req, res) => {
   try {
     const linkDoc = new linkModel({
       link: req.body.link,
-      user: req.user._id.toString(),
     });
 
     await linkDoc.save();
