@@ -14,8 +14,8 @@ export const addLinkRequest = async (link: string) => {
 };
 type params = {
   page?: number;
-  purchasesLower?: number;
-  purchasesHigh?: number;
+  min?: number;
+  max?: number;
   dateFrom?: string;
   dateTo?: string;
 };

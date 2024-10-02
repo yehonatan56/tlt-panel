@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { getLinksRequest, getPagesRequest } from "../requests/links.ts";
 import List from "../components/viewAll/list.tsx";
 import { Pagination } from "@mantine/core";
+import Filters from "../components/viewAll/filters.tsx";
 
 const ViewAll = () => {
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
+  const [filter, setFilter] = useState({ page: 1 });
   const [total, setTotal] = useState(0);
   useEffect(() => {
     getLinksRequest({}).then((data) => {
@@ -17,20 +18,20 @@ const ViewAll = () => {
   }, []);
 
   useEffect(() => {
-    console.log(page);
-    getLinksRequest({ page }).then((data) => {
+    getLinksRequest(filter).then((data) => {
       setData(data);
     });
-  }, [page]);
+  }, [filter]);
 
   return (
     <div>
       <h1>View All</h1>
+      <Filters filters={filter} setFilters={setFilter} />
       <List list={data} />
       <Pagination
         total={total}
-        page={page}
-        onChange={() => setPage((prevState) => prevState + 1)}
+        page={filter.page}
+        onChange={() => setFilter({ ...filter, page: filter.page + 1 })}
       />
     </div>
   );
