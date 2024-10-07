@@ -1,6 +1,13 @@
-const Filters = ({ filters, setFilters }) => {
-  const handleChange = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
+import { params } from "../../types";
+
+interface FiltersProps {
+  filters: params;
+  setFilters: (filters: params) => void;
+}
+const Filters = (props: FiltersProps) => {
+  const { filters, setFilters } = props;
+  const handleChange = (e: { target: { name: any; value: any } }) => {
+    setFilters({ ...filters, [e.target.name]: e.target.value, page: 1 });
   };
 
   return (
@@ -38,4 +45,3 @@ const Filters = ({ filters, setFilters }) => {
 };
 
 export default Filters;
-``;

@@ -1,15 +1,13 @@
 const express = require("express");
+const { login } = require("../services/auth/login");
 const router = express.Router();
-const passport = require("passport");
-const { isAuthenticatedMW, passportRuote } = require("../config/passport");
-const { error } = require("../services/auth/error");
-const { ok } = require("../services/auth/ok");
 
-router.post("/login", passport.authenticate("local", passportRuote));
+router.post("/login", login);
 
-// router.get( "/ok", ok);
-router.get("/ok/", ok);
-
-router.get("/err", error);
+router.post("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.json({ message: "Logged out" });
+});
 
 module.exports = router;
+``;

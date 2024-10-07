@@ -24,15 +24,23 @@ const ViewAll = () => {
   }, [filter]);
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <h1>View All</h1>
       <Filters filters={filter} setFilters={setFilter} />
       <List list={data} />
+      (
       <Pagination
         total={total}
-        page={filter.page}
-        onChange={() => setFilter({ ...filter, page: filter.page + 1 })}
+        value={filter.page}
+        onChange={(page) => setFilter({ ...filter, page })}
       />
+      )
     </div>
   );
 };
