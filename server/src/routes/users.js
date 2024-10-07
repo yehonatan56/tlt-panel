@@ -9,6 +9,6 @@ const router = express.Router();
 router.get("/", isAuthorized, getAllUsers);
 
 //i want only authenticated admin to be able to register new users
-router.post("/", register);
+router.post("/", isAuthorized(true), register);
 
 module.exports = router;
