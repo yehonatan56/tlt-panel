@@ -1,31 +1,17 @@
 const express = require("express");
+const { create } = require("../services/links/create");
+const { purchase } = require("../services/links/purchase");
+const { get, getPages, getHighestPurchases } = require("../services/links/get");
+const { isAuthorized } = require("../middlewars/auth");
+
 const router = express.Router();
-const linkModel = require("../models/links");
-const sendMail = require("../config/mail");
-router.post("/", async (req, res) => {
-  try {
-    const { link } = req.body;
-    const linkDoc = new linkModel({ link });
-    await linkDoc.save();
-    res.json(linkDoc);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-router.post("/purchase", async (req, res) => {
-  try {
-    const { link } = req.body;
-    const linkDoc = await linkModel.findOneAndUpdate(
-      { link },
-      { $inc: { purchases: 1 } },
-    );
-    res.json({
-      mail: sendMail(`Someone bought your product: ${link}`),
-      linkDoc,
-    });
-    // todo: send full linkDoc back
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+console.log("router");
+
+router.get("/", isAuthorized, get);
+router.get("/pages", isAuthorized, getPages);
+router.get("/highest", isAuthorized, getHighestPurchases);
+router.post("/", isAuthorized, create);
+
+router.post("/purchase", purchase);
+
 module.exports = router;

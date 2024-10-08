@@ -1,18 +1,14 @@
 const express = require("express");
+
+const { register } = require("../services/users/register");
+const { getAllUsers } = require("../services/users/getAllUsers");
+const { isAuthorized } = require("../middlewars/auth");
+
 const router = express.Router();
-const userModel = require("../models/users");
-const tty = require("node:tty");
-router.get("/", (req, res) => {
-  res.send("Hello from users route");
-});
-router.post("/", async (req, res) => {
-  const { name, password } = req.body;
-  try {
-    const user = new userModel({ name, password });
-    await user.save();
-    res.json(user);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+// i not know why the isAuthenticatedMW not working in client side
+router.get("/", isAuthorized, getAllUsers);
+
+//i want only authenticated admin to be able to register new users
+router.post("/", isAuthorized(true), register);
+
 module.exports = router;

@@ -1,24 +1,13 @@
 const express = require("express");
+const { login } = require("../services/auth/login");
 const router = express.Router();
-const passport = require("passport");
-const userModel = require("../models/users");
 
-let user = "";
-router.post(
-  "/login",
-  (req, res, next) => {
-    user = req.body.name;
-    next();
-  },
-  passport.authenticate("local", {
-    successRedirect: "/auth/ok/",
-    failureRedirect: "/auth/err",
-  }),
-);
+router.post("/login", login);
 
-router.get("/ok", async (req, res) => {
-  res.json({ user: await userModel.findOne({ name: user }) });
+router.post("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.json({ message: "Logged out" });
 });
-router.get("/err", (req, res) => res.status(400).send("kkjklk"));
 
 module.exports = router;
+``;
