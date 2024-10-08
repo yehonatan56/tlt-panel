@@ -1,14 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./login.css";
-import { auth } from "../../logic/users.ts";
+import { createUser } from "../../logic/users.ts";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
-const Login = () => {
-  const [error, setError] = useState("");
-
+const Register = () => {
   const navigate = useNavigate();
+
   return (
     <div className="form-container">
       <Formik
@@ -17,13 +15,17 @@ const Login = () => {
           username: Yup.string()
             .max(15, "Must be 15 characters or less")
             .required("Required"),
-          password: Yup.string().required("Required"),
+          password: Yup.string()
+            .min(6, "Must be at least 6 characters")
+            .required("Required"),
+          confirmPassword: Yup.string().oneOf(
+            [Yup.ref("password")],
+            "Passwords must match",
+          ),
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          if (await auth(values)) navigate("/control");
+          if (await createUser(values)) navigate("/control");
 
-          // If auth fails, set error message
-          setError("Invalid username or password");
           setSubmitting(false);
         }}
       >
@@ -48,7 +50,15 @@ const Login = () => {
                 className="error-message"
               />
             </div>
-            <div className="error-message">{error}</div>
+            <div className="form-field">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <Field name="confirmPassword" type="password" className="input" />
+              <ErrorMessage
+                name="confirmPassword"
+                component="div"
+                className="error-message"
+              />
+            </div>
 
             <button
               type="submit"
@@ -64,4 +74,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

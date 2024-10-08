@@ -26,4 +26,5 @@ const Header = ({ children }: HeaderProps) => {
     </>
   );
 };
+
 export default Header;

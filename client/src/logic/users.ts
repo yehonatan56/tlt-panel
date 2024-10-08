@@ -1,9 +1,9 @@
-import { login } from "../requests/auth.ts";
+import { login, register } from "../requests/auth.ts";
 import { user } from "../types.ts";
 
 export const auth = async (user: user) => {
   const auth = await login(user);
-  if (auth !== "undefined") {
+  if (auth) {
     console.log("Success");
     return true;
   } else {
@@ -11,4 +11,14 @@ export const auth = async (user: user) => {
 
     return false;
   }
+};
+
+export const createUser = async (user: user) => {
+  const res = await register(user);
+  if (res.status === 401) {
+    console.log("Error");
+    return false;
+  }
+  console.log("Success");
+  return true;
 };
