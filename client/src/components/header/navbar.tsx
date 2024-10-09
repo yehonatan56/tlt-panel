@@ -1,12 +1,13 @@
-import { Box, Anchor } from "@mantine/core";
+import { Box, Anchor, Button } from "@mantine/core";
 import { createStyles } from "@mantine/styles";
 import { Link } from "react-router-dom";
 
 const useStyles = createStyles(() => ({
   link: {
     textDecoration: "none",
-    color: "#1c7ed6",
-    padding: "10px 15px",
+    backgroundColor: "#aaa",
+    color: "#1c7ed6 !important",
+    padding: "10px !important",
     "&:hover": {
       textDecoration: "underline",
     },
@@ -15,7 +16,7 @@ const useStyles = createStyles(() => ({
     display: "flex",
     justifyContent: "space-around",
     padding: "15px",
-    backgroundColor: "#f1f3f5",
+    width: "100%",
   },
 }));
 
@@ -33,6 +34,21 @@ const Navbar = () => {
       <Anchor component={Link} to="/viewAll" className={classes.link}>
         View All
       </Anchor>
+
+      <Anchor component={Link} to="/register" className={classes.link}>
+        Register
+      </Anchor>
+
+      <Button
+        className={classes.link}
+        onClick={() => {
+          localStorage.removeItem("token");
+          window.location.href = "/";
+        }}
+        style={{ backgroundColor: "red", color: "white" }}
+      >
+        Logout
+      </Button>
     </Box>
   );
 };

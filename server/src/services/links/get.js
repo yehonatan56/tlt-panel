@@ -23,6 +23,8 @@ module.exports.get = async (req, res) => {
     res.status(400).json(err);
   }
 };
+
+// this route is`nt used in the frontend
 module.exports.getHighestPurchases = async (req, res) => {
   try {
     const links = await linkModel.find().sort({ purchases: -1 }).limit(3);
@@ -32,6 +34,7 @@ module.exports.getHighestPurchases = async (req, res) => {
     res.status(400).json(err);
   }
 };
+
 module.exports.getPages = async (req, res) => {
   try {
     const linksPerPage = 8;

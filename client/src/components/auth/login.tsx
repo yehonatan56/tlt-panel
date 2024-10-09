@@ -19,12 +19,12 @@ const Login = () => {
             .required("Required"),
           password: Yup.string().required("Required"),
         })}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, {}) => {
           if (await auth(values)) navigate("/control");
 
           // If auth fails, set error message
           setError("Invalid username or password");
-          setSubmitting(false);
+          //  setSubmitting(false);
         }}
       >
         {({ isSubmitting }) => (
