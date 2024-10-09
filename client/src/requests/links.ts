@@ -9,7 +9,7 @@ const getHeaders = () => {
 export const addLinkRequest = async (link: string) => {
   const linkObj = { link: link };
 
-  const response = await fetch("http://localhost:3000/links", {
+  const response = await fetch("https://tlt-panel.onrender.com/links", {
     method: "POST",
     headers: getHeaders(),
     body: JSON.stringify(linkObj),
@@ -24,17 +24,20 @@ export const getLinksRequest = async (filters: params = {}) => {
   const params = filters
     ? "?" + new URLSearchParams(filters as any).toString()
     : "";
-  const response = await fetch("http://localhost:3000/links" + params, {
-    method: "GET",
-    headers: getHeaders(),
-  })
+  const response = await fetch(
+    "https://tlt-panel.onrender.com/links" + params,
+    {
+      method: "GET",
+      headers: getHeaders(),
+    },
+  )
     .then((res) => res.json())
     .then((data) => data);
   return response.links;
 };
 
 export const getHighestRequest = async () => {
-  const response = await fetch("http://localhost:3000/links/highest", {
+  const response = await fetch("https://tlt-panel.onrender.com/links/highest", {
     method: "GET",
     headers: getHeaders(),
   })
@@ -44,7 +47,7 @@ export const getHighestRequest = async () => {
 };
 
 export const getPagesRequest = async () => {
-  const response = await fetch("http://localhost:3000/links/pages", {
+  const response = await fetch("https://tlt-panel.onrender.com/links/pages", {
     method: "GET",
     headers: getHeaders(),
   })

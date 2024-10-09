@@ -1,7 +1,7 @@
 import { user } from "../types.ts";
 
 export const login = async (puser: user) => {
-  await fetch("http://localhost:3000/auth/login", {
+  await fetch("https://tlt-panel.onrender.com/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(puser),
@@ -12,7 +12,7 @@ export const login = async (puser: user) => {
 };
 
 export const register = async (puser: user) => {
-  const res = await fetch("http://localhost:3000/users", {
+  const res = await fetch("https://tlt-panel.onrender.com/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
