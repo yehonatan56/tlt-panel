@@ -6,7 +6,7 @@ const { isAuthorized } = require("../middlewars/auth");
 
 const router = express.Router();
 // i not know why the isAuthenticatedMW not working in client side
-router.get("/", isAuthorized, getAllUsers);
+router.get("/", isAuthorized(), getAllUsers);
 
 //i want only authenticated admin to be able to register new users
 router.post("/", isAuthorized(true), register);
