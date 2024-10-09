@@ -1,3 +1,4 @@
+// this file is`nt used in the project
 const nodeMailer = require("nodemailer");
 
 const transporter = nodeMailer.createTransport({
