@@ -32,6 +32,7 @@ const ViewAll = () => {
       }}
     >
       <h1>View All</h1>
+      {/*@ts-ignore*/}
       <Filters filters={filter} setFilters={setFilter} />
       <List list={data} />
       (
