@@ -4,6 +4,9 @@ const userModel = require("../models/users");
 module.exports.isAuthorized = (isRequiredAdmin = false) => {
   return async (req, res, next) => {
     const token = req.headers.authorization || req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     const jwtString = token.startsWith("Bearer")
       ? token.replace("Bearer ", "")
       : token;

@@ -3,17 +3,18 @@ const linkModel = require("../../models/links");
 module.exports.get = async (req, res) => {
   try {
     const {
-      page = 1,
+      page = undefined,
       min: purchasesLower = 0,
-      max: purchasesHigh = Infinity,
+      max: purchasesHigh = "1000",
       dateFrom,
       dateTo,
     } = req.query;
 
     const links = await linkModel
       .find({
-        purchases: { $gte: purchasesLower, $lte: purchasesHigh },
-        createdAt: { $gte: dateFrom, $lte: dateTo },
+        purchases: { $gte: +purchasesLower, $lte: +purchasesHigh },
+
+        // createdAt: { $gte: dateFrom, $lte: dateTo },
       })
       .limit(8)
       .skip((page - 1) * 8);
