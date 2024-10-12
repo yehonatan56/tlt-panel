@@ -8,7 +8,7 @@ const router = express.Router();
 // i not know why the isAuthenticatedMW not working in client side
 router.get("/", isAuthorized(), getAllUsers);
 
-//i want only authenticated admin to be able to register new users
+//i want only authenticated admin to be able to register new uses
 router.post("/", isAuthorized(true), register);
 
 module.exports = router;
