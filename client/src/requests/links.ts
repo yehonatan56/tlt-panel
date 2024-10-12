@@ -36,6 +36,16 @@ export const getLinksRequest = async (filters: params = {}) => {
   return response.links;
 };
 
+export const deleteLinkRequest = async (id: string) => {
+  const response = await fetch("https://tlt-panel.onrender.com/links/" + id, {
+    method: "DELETE",
+    headers: getHeaders(),
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+  return response;
+};
+
 export const getHighestRequest = async () => {
   const response = await fetch("https://tlt-panel.onrender.com/links/highest", {
     method: "GET",

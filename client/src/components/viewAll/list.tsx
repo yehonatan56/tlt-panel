@@ -1,10 +1,15 @@
+import { Button } from "@mantine/core";
+
 type Props = {
   list: {
+    _id: string;
     link: string;
     purchases: number;
   }[];
+  deleteLink: (id: string) => void;
 };
-const List = ({ list }: Props) => {
+const List = ({ list, deleteLink }: Props) => {
+  // @ts-ignore
   return (
     <div>
       <ul
@@ -23,6 +28,7 @@ const List = ({ list }: Props) => {
           <li
             key={index}
             style={{
+              position: "relative",
               padding: "10px",
               border: "1px solid #ccc",
               margin: "1rem",
@@ -32,6 +38,20 @@ const List = ({ list }: Props) => {
               maxHeight: "100px",
             }}
           >
+            <Button
+              style={{
+                backgroundColor: "#f00",
+                color: "#fff",
+                borderRadius: "5px",
+                padding: "10px",
+                position: "absolute",
+                top: "0",
+                right: "0",
+              }}
+              onClick={() => deleteLink(item._id)}
+            >
+              X
+            </Button>
             <a href={item.link} style={{ textDecoration: "none" }}>
               {item.link}
             </a>
