@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getLinksRequest, getPagesRequest } from "../requests/links.ts";
+import {deleteLinkRequest, getLinksRequest, getPagesRequest} from "../requests/links.ts";
 import List from "../components/viewAll/list.tsx";
 import { Pagination } from "@mantine/core";
 import Filters from "../components/viewAll/filters.tsx";
@@ -23,6 +23,13 @@ const ViewAll = () => {
     });
   }, [filter]);
 
+  const deleteLink = (id: string) => {
+    deleteLinkRequest(id).then(() => {
+      getLinksRequest(filter).then((data) => {
+        setData(data);
+      });
+    }
+  }
   return (
     <div
       style={{
@@ -34,14 +41,13 @@ const ViewAll = () => {
       <h1>View All</h1>
       {/*@ts-ignore*/}
       <Filters filters={filter} setFilters={setFilter} />
-      <List list={data} />
-      (
+      <List list={data} deleteLink={deleteLink} />
       <Pagination
         total={total}
         value={filter.page}
         onChange={(page) => setFilter({ ...filter, page })}
       />
-      )
+
     </div>
   );
 };
