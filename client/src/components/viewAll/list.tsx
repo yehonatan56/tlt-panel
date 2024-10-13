@@ -34,7 +34,7 @@ const List = ({ list, deleteLink }: Props) => {
               borderRadius: "5px",
               maxWidth: "300px",
               textAlign: "center",
-              maxHeight: "100px",
+              maxHeight: "150px",
             }}
           >
             <a href={item.link} style={{ textDecoration: "none" }}>
@@ -43,7 +43,8 @@ const List = ({ list, deleteLink }: Props) => {
             <p>Purchases: {item.purchases}</p>
             <Button
               style={{
-                backgroundColor: "#f00",
+                backgroundColor: "red",
+                opacity: 0.8,
                 color: "#fff",
                 borderRadius: "5px",
                 padding: "10px",
@@ -52,7 +53,6 @@ const List = ({ list, deleteLink }: Props) => {
             >
               X
             </Button>
-            +
           </li>
         ))}
       </ul>
