@@ -28,7 +28,6 @@ const List = ({ list, deleteLink }: Props) => {
           <li
             key={index}
             style={{
-              position: "relative",
               padding: "10px",
               border: "1px solid #ccc",
               margin: "1rem",
@@ -38,24 +37,22 @@ const List = ({ list, deleteLink }: Props) => {
               maxHeight: "100px",
             }}
           >
+            <a href={item.link} style={{ textDecoration: "none" }}>
+              {item.link}
+            </a>
+            <p>Purchases: {item.purchases}</p>
             <Button
               style={{
                 backgroundColor: "#f00",
                 color: "#fff",
                 borderRadius: "5px",
                 padding: "10px",
-                position: "absolute",
-                top: "0",
-                right: "0",
               }}
               onClick={() => deleteLink(item._id)}
             >
               X
             </Button>
-            <a href={item.link} style={{ textDecoration: "none" }}>
-              {item.link}
-            </a>
-            <p>Purchases: {item.purchases}</p>
+            +
           </li>
         ))}
       </ul>
