@@ -1,4 +1,4 @@
-const usersRoute = require("./users");
+const usersRoute = require("./users.route");
 // todo: postfixNames Route
 const links = require("./links");
 const auth = require("./auth");

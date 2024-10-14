@@ -1,4 +1,4 @@
-const userModel = require("../../models/users");
+const userModel = require("../../models/users.model");
 
 module.exports.register = async (req, res) => {
   const { username, password, role } = req.body;

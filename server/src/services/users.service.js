@@ -1,4 +1,4 @@
-const userModel = require("../models/users");
+const userModel = require("../models/users.model");
 
 module.exports.getUsernamesServiceHandler = async () => {
   const users = await userModel.find({}, "username");
