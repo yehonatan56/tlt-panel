@@ -5,9 +5,9 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const routes = require("../routes/index");
-const { PUBLIC_PATH } = require("../paths");
+const { PUBLIC_PATH, ENV_PATH } = require("../paths");
 
-dotenv.config();
+dotenv.config({ path: ENV_PATH });
 
 module.exports = (app) => {
   app.use(cookieParser());
