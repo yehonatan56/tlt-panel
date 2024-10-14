@@ -1,4 +1,3 @@
-const path = require('path');
-module.exports = {
-    public: path.join(__dirname, 'public'),
-}
+const path = require("path");
+
+module.exports.PUBLIC_PATH = path.join(__dirname, "public");

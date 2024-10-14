@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const routes = require("../routes/index");
-const { public } = require("../paths");
+const { PUBLIC_PATH } = require("../paths");
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ module.exports = (app) => {
   app.use(cors());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(express.static(public));
+  app.use(express.static(PUBLIC_PATH));
   app.use(morgan("dev"));
 
   routes(app);

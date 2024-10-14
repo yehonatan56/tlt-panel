@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
+// todo: significant names - connectDB
 const db = async () => {
+  // todo: check url connection first
   await mongoose
     .connect(process.env.CONNECTION_STRING)
     .then(() => {
@@ -10,4 +12,5 @@ const db = async () => {
       console.log(err);
     });
 };
+
 module.exports = db;
