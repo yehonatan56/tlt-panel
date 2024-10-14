@@ -4,6 +4,7 @@ module.exports.create = async (req, res) => {
   try {
     const linkDoc = new linkModel({
       link: req.body.link,
+      // image: req.file.filename,
     });
 
     await linkDoc.save();
