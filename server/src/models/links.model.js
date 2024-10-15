@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const linkHook = require("../hooks/link");
-const { LINKS } = require("../mocks/links");
+const { LINKS: LinksModel } = require("../mocks/links");
 
 const linkSchema = new mongoose.Schema(
   {
