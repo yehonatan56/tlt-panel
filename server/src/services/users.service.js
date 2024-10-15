@@ -10,8 +10,7 @@ module.exports.registerServiceHandler = async (req, res) => {
   try {
     const user = new userModel({ username, password, role });
     await user.save();
-
-    res.json(user);
+    return user;
   } catch (err) {
     res.status(400).json(err);
   }

@@ -1,10 +1,6 @@
 const express = require("express");
-
-const { register } = require("../services/users/register");
-// todo: remove all services from routes - use controllers
-const { getAllUsers } = require("../services/users/getAllUsers");
 const { isAdminUserMW, isAuthorizedUserMW } = require("../middlewars/auth");
-const { getUsernamesCtrl } = require("../controllers/users.controller");
+const { getUsernamesCtrl , registerCtrl } = require("../controllers/users.controller");
 
 const router = express.Router();
 
@@ -12,6 +8,6 @@ const router = express.Router();
 router.get("/", isAuthorizedUserMW, getUsernamesCtrl);
 
 //i want only authenticated admin to be able to register new uses
-router.post("/", isAuthorizedUserMW, isAdminUserMW, register);
+router.post("/", isAuthorizedUserMW, isAdminUserMW, registerCtrl);
 
 module.exports = router;

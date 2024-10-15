@@ -1,8 +1,8 @@
 const express = require("express");
-const { login } = require("../services/auth/login");
+const { loginCtrl } = require("../controllers/auth.controller");
 const router = express.Router();
 
-router.post("/login", login);
+router.post("/login", loginCtrl);
 
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
@@ -10,4 +10,3 @@ router.post("/logout", (req, res) => {
 });
 
 module.exports = router;
-``;

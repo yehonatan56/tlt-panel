@@ -1,4 +1,4 @@
-const { getUsernamesServiceHandler } = require("../services/users.service");
+const { getUsernamesServiceHandler , registerServiceHandler} = require("../services/users.service");
 
 module.exports.getUsernamesCtrl = async (req, res, next) => {
   try {
@@ -8,3 +8,12 @@ module.exports.getUsernamesCtrl = async (req, res, next) => {
     next(e);
   }
 };
+
+module.exports.registerCtrl = async (req, res, next) => {
+    try {
+        const users = await registerServiceHandler();
+        res.send(users);
+    } catch (e) {
+        next(e);
+    }
+}
