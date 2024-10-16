@@ -68,3 +68,7 @@ module.exports.purchaseCtrl = async (req, res, next) => {
     res.send(e);
   }
 };
+
+module.exports.uploadCtrl = async (req, res, next) => {
+  res.send(req.file.originalname);
+};
