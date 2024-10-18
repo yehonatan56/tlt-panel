@@ -1,7 +1,9 @@
 import { user } from "../types.ts";
+import { environment } from "../enviromment.ts";
 
+const { server } = environment;
 export const login = async (puser: user) => {
-  await fetch("https://tlt-panel.onrender.com/auth/login", {
+  await fetch(server + "/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(puser),
@@ -12,7 +14,7 @@ export const login = async (puser: user) => {
 };
 
 export const register = async (puser: user) => {
-  const res = await fetch("https://tlt-panel.onrender.com/users", {
+  const res = await fetch(server + "/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

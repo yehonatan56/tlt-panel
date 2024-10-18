@@ -1,6 +1,12 @@
-const express = require("express");
-const { isAdminUserMW, isAuthorizedUserMW } = require("../middlewars/auth");
-const { getUsernamesCtrl , registerCtrl } = require("../controllers/users.controller");
+import express from "express";
+import {
+  isAdminUserMW,
+  isAuthorizedUserMW,
+} from "../middlewars/auth.middleware";
+const {
+  getUsernamesCtrl,
+  registerCtrl,
+} = require("../controllers/users.controller");
 
 const router = express.Router();
 
@@ -10,4 +16,4 @@ router.get("/", isAuthorizedUserMW, getUsernamesCtrl);
 //i want only authenticated admin to be able to register new uses
 router.post("/", isAuthorizedUserMW, isAdminUserMW, registerCtrl);
 
-module.exports = router;
+export default router;

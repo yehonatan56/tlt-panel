@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const userHook = require("../hooks/user");
+import mongoose from "mongoose";
+import userHook from "../hooks/user";
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -23,4 +23,5 @@ userHook(userSchema);
 const UserModel = mongoose.model("users", userSchema);
 // new UserModel({ username: "admin", password: "admin", role: "admin" }).save();
 // new UserModel({ username: "user", password: "user", role: "user" }).save();
-module.exports = UserModel;
+
+export default UserModel;

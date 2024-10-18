@@ -1,5 +1,10 @@
-const { loginServiceHandler } = require("../services/auth.service");
-module.exports.loginCtrl = async (req, res, next) => {
+import { Request, Response, NextFunction } from "express";
+import { loginServiceHandler } from "../services/auth.service";
+module.exports.loginCtrl = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const { username, password } = req.body;
     const { message, status, token } = await loginServiceHandler({

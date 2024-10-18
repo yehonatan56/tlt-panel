@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-const linkHook = require("../hooks/link");
-const { LINKS: LinksModel } = require("../mocks/links");
+import mongoose from "mongoose";
+import linkHook from "../hooks/link.hook";
 
 const linkSchema = new mongoose.Schema(
   {
@@ -25,4 +24,4 @@ const linkSchema = new mongoose.Schema(
 linkHook(linkSchema);
 
 const LinkModel = mongoose.model("links", linkSchema);
-module.exports = LinkModel;
+export default LinkModel;

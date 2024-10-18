@@ -1,5 +1,5 @@
-const multer = require("multer");
-const { PUBLIC_PATH } = require("../paths");
+import multer from "multer";
+import { PUBLIC_PATH } from "../paths";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, PUBLIC_PATH + "/uploads");
@@ -11,4 +11,4 @@ const storage = multer.diskStorage({
 
 const uploadMW = multer({ storage });
 
-module.exports.uploadMW = uploadMW;
+export { uploadMW };

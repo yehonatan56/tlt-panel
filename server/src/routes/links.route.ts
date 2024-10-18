@@ -1,6 +1,6 @@
-const express = require("express");
-const { isAuthorizedUserMW } = require("../middlewars/auth");
-const {
+import express from "express";
+import { isAuthorizedUserMW } from "../middlewars/auth.middleware";
+import {
   createLinkCtrl,
   deleteLinkCtrl,
   getHighestPurchasesCtrl,
@@ -8,8 +8,8 @@ const {
   getPagesCtrl,
   purchaseCtrl,
   uploadCtrl,
-} = require("../controllers/links.controller");
-const { uploadMW } = require("../middlewars/upload");
+} from "../controllers/links.controller";
+import { uploadMW } from "../middlewars/upload.miiddleware";
 const router = express.Router();
 
 router.get("/", isAuthorizedUserMW, getLinksCtrl);
@@ -20,4 +20,5 @@ router.post("/purchase", purchaseCtrl);
 router.post("/upload", isAuthorizedUserMW, uploadMW.single("file"), uploadCtrl);
 
 router.delete("/:id", isAuthorizedUserMW, deleteLinkCtrl);
-module.exports = router;
+
+export default router;

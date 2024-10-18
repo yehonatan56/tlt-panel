@@ -1,8 +1,8 @@
-const userModel = require("../models/users.model");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import userModel from "../models/users.model";
 
-module.exports.loginServiceHandler = async ({ username, password }) => {
+export const loginServiceHandler = async ({ username, password }) => {
   const user = await userModel.findOne({ username });
 
   if (!user) {

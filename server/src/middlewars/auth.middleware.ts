@@ -1,9 +1,11 @@
-const jwt = require("jsonwebtoken");
-const userModel = require("../models/users.model");
-
-
-
-module.exports.isAuthorizedUserMW = async (req, res, next) => {
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+import userModel from "../models/users.model";
+export const isAuthorizedUserMW = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   const token = req.headers.authorization || req.cookies.token;
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -28,7 +30,11 @@ module.exports.isAuthorizedUserMW = async (req, res, next) => {
   }
 };
 
-module.exports.isAdminUserMW = (req, res, next) => {
+export const isAdminUserMW = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   if (req.user.role !== "admin") {
     res.status(401).json({ message: "Unauthorized" });
     return;

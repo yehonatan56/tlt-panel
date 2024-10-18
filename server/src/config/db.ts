@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // todo: significant names - connectDB
 const db = async () => {
@@ -13,4 +13,4 @@ const db = async () => {
     });
 };
 
-module.exports = db;
+export default db;

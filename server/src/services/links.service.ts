@@ -1,6 +1,6 @@
-const linkModel = require("../models/links.model");
+import linkModel from "../models/links.model";
 
-module.exports.createLinkServiceHandler = async (link) => {
+export const createLinkServiceHandler = async (link) => {
   try {
     const linkDoc = new linkModel({
       link,
@@ -13,16 +13,16 @@ module.exports.createLinkServiceHandler = async (link) => {
   }
 };
 
-module.exports.deleteLinkServiceHandler = async (id) => {
+export const deleteLinkServiceHandler = async (id) => {
   try {
     const link = await linkModel.findByIdAndDelete(id);
-    res.json(link);
+    return link;
   } catch (err) {
     return err;
   }
 };
 
-module.exports.getLinksServiceHandler = async (filters) => {
+export const getLinksServiceHandler = async (filters) => {
   try {
     const {
       page = undefined,
@@ -48,7 +48,7 @@ module.exports.getLinksServiceHandler = async (filters) => {
 };
 
 // this route is`nt used in the frontend
-module.exports.getHighestPurchasesServiceHandler = async () => {
+export const getHighestPurchasesServiceHandler = async () => {
   try {
     const links = await linkModel.find().sort({ purchases: -1 }).limit(3);
     return links;
@@ -57,7 +57,7 @@ module.exports.getHighestPurchasesServiceHandler = async () => {
   }
 };
 
-module.exports.getPagesServiceHandler = async () => {
+export const getPagesServiceHandler = async () => {
   try {
     const linksPerPage = 8;
     const linksCount = await linkModel.countDocuments();
@@ -67,7 +67,7 @@ module.exports.getPagesServiceHandler = async () => {
     return err;
   }
 };
-module.exports.purchaseServiceHandler = async (link) => {
+export const purchaseServiceHandler = async (link) => {
   try {
     const linkDoc = await linkModel.findOneAndUpdate(
       { link },

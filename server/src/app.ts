@@ -1,6 +1,6 @@
-const express = require("express");
-const configExpress = require("./config/express");
-const db = require("./config/db");
+import express from "express";
+import configExpress from "./config/express";
+import db from "./config/db";
 
 db().then(() => {
   const app = express();

@@ -1,12 +1,17 @@
-const {
+import { Request, Response, NextFunction } from "express";
+import {
   getLinksServiceHandler,
   createLinkServiceHandler,
   deleteLinkServiceHandler,
   getHighestPurchasesServiceHandler,
   getPagesServiceHandler,
   purchaseServiceHandler,
-} = require("../services/links.service");
-module.exports.getLinksCtrl = async (req, res, next) => {
+} from "../services/links.service";
+const getLinksCtrl = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const links = await getLinksServiceHandler();
     res.send(links);
@@ -15,7 +20,11 @@ module.exports.getLinksCtrl = async (req, res, next) => {
   }
 };
 
-module.exports.createLinkCtrl = async (req, res, next) => {
+const createLinkCtrl = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const link = await createLinkServiceHandler(req);
     res.send(link);
@@ -24,7 +33,11 @@ module.exports.createLinkCtrl = async (req, res, next) => {
   }
 };
 
-module.exports.deleteLinkCtrl = async (req, res, next) => {
+const deleteLinkCtrl = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const link = await deleteLinkServiceHandler(req.params.id);
     res.json(link);
@@ -33,7 +46,11 @@ module.exports.deleteLinkCtrl = async (req, res, next) => {
   }
 };
 
-module.exports.getHighestPurchasesCtrl = async (req, res, next) => {
+const getHighestPurchasesCtrl = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const links = await getHighestPurchasesServiceHandler();
     res.send(links);
@@ -42,7 +59,11 @@ module.exports.getHighestPurchasesCtrl = async (req, res, next) => {
   }
 };
 
-module.exports.getPagesCtrl = async (req, res, next) => {
+const getPagesCtrl = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const pages = await getPagesServiceHandler();
     res.send(pages);
@@ -51,16 +72,11 @@ module.exports.getPagesCtrl = async (req, res, next) => {
   }
 };
 
-module.exports.getLinksCtrl = async (req, res, next) => {
-  try {
-    const links = await getLinksServiceHandler();
-    res.send(links);
-  } catch (e) {
-    next(e);
-  }
-};
-
-module.exports.purchaseCtrl = async (req, res, next) => {
+const purchaseCtrl = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const link = await purchaseServiceHandler(req.body.link);
     res.send(link);
@@ -69,6 +85,16 @@ module.exports.purchaseCtrl = async (req, res, next) => {
   }
 };
 
-module.exports.uploadCtrl = async (req, res, next) => {
+const uploadCtrl = async (req: Request, res: Response, next: NextFunction) => {
   res.send(req.file.originalname);
+};
+
+export {
+  getLinksCtrl,
+  createLinkCtrl,
+  deleteLinkCtrl,
+  getHighestPurchasesCtrl,
+  getPagesCtrl,
+  purchaseCtrl,
+  uploadCtrl,
 };
