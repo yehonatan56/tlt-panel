@@ -13,10 +13,10 @@ const getLinksCtrl = async (
   next: NextFunction,
 ) => {
   try {
-    const links = await getLinksServiceHandler();
-    res.send(links);
+    const links = await getLinksServiceHandler(req.query);
+    res.json(links);
   } catch (e) {
-    res.send(e);
+    res.json(e);
   }
 };
 
@@ -27,9 +27,9 @@ const createLinkCtrl = async (
 ) => {
   try {
     const link = await createLinkServiceHandler(req);
-    res.send(link);
+    res.json(link);
   } catch (e) {
-    res.send(e);
+    res.json(e);
   }
 };
 
@@ -42,7 +42,7 @@ const deleteLinkCtrl = async (
     const link = await deleteLinkServiceHandler(req.params.id);
     res.json(link);
   } catch (e) {
-    res.send(e);
+    res.json(e);
   }
 };
 
@@ -53,7 +53,7 @@ const getHighestPurchasesCtrl = async (
 ) => {
   try {
     const links = await getHighestPurchasesServiceHandler();
-    res.send(links);
+    res.json(links);
   } catch (e) {
     next(e);
   }
@@ -66,7 +66,7 @@ const getPagesCtrl = async (
 ) => {
   try {
     const pages = await getPagesServiceHandler();
-    res.send(pages);
+    res.json(pages);
   } catch (e) {
     next(e);
   }
@@ -79,14 +79,14 @@ const purchaseCtrl = async (
 ) => {
   try {
     const link = await purchaseServiceHandler(req.body.link);
-    res.send(link);
+    res.json(link);
   } catch (e) {
-    res.send(e);
+    res.json(e);
   }
 };
 
 const uploadCtrl = async (req: Request, res: Response, next: NextFunction) => {
-  res.send(req.file.originalname);
+  res.json(req.file.originalname);
 };
 
 export {

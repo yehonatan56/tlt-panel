@@ -23,7 +23,7 @@ const registerCtrl = async (
   next: NextFunction,
 ) => {
   try {
-    const users = await registerServiceHandler();
+    const users = await registerServiceHandler(req.body);
     res.send(users);
   } catch (e) {
     next(e);

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import userHook from "../hooks/user";
+import userHook from "../hooks/user.hook";
 
 const userSchema = new mongoose.Schema({
   username: {
