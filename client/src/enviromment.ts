@@ -1,3 +1,3 @@
 export const environment = {
-  server: process.env.REACT_APP_SERVER,
+  server: "http://localhost:3000",
 };

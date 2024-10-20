@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
 
 // todo: significant names - connectDB
-const db = async () => {
+const connectDB = async () => {
   // todo: check url connection first
+  if (!process.env.CONNECTION_STRING) {
+    console.log("No connection string provided");
+    return;
+  }
   await mongoose
     .connect(process.env.CONNECTION_STRING)
     .then(() => {
@@ -13,4 +17,4 @@ const db = async () => {
     });
 };
 
-export default db;
+export default connectDB;

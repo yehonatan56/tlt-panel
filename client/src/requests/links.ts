@@ -1,5 +1,5 @@
 import { params } from "../types.ts";
-import { environment } from "../environment.ts";
+import { environment } from "../enviromment.ts";
 
 const { server } = environment;
 
