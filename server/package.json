@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsx --watch src/app.ts",
     "watch": "nodemon src/app.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "jest-init": "jest --init"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +27,7 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.1"
   },
   "devDependencies": {
@@ -35,13 +37,16 @@
     "@types/cors": "^2.8.17",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.13",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/mongoose": "^5.11.97",
     "@types/morgan": "^1.9.9",
     "@types/multer": "^1.4.12",
     "@types/node": "^22.7.6",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.6",
     "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.6.3"
   }
 }
