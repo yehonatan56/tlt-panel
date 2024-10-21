@@ -13,6 +13,7 @@ const config: Config = {
   collectCoverage: true,
   collectCoverageFrom: ["src/**/*.ts"],
   coverageDirectory: "coverage",
+  setupFilesAfterEnv: ["<rootDir>/src/utils/jest.ts"],
 };
 
 export default config;

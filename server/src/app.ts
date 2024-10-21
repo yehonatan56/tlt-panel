@@ -2,9 +2,10 @@ import express from "express";
 import configExpress from "./config/express";
 import connectDB from "./config/db";
 
+const app = express();
+
 connectDB()
   .then(() => {
-    const app = express();
     configExpress(app);
 
     app.listen(3000, () => {
@@ -14,3 +15,5 @@ connectDB()
   .catch((err) => {
     console.log(err);
   });
+
+export default app;
