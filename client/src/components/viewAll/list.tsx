@@ -44,7 +44,9 @@ const List = ({ list, deleteLink }: Props) => {
             </a>
             <p>Purchases: {item.purchases}</p>
             <img
-              src={item.image || fallbackImage}
+              src={
+                item.image.includes("undefined") ? fallbackImage : item.image
+              }
               style={{
                 width: "50px",
                 height: "50px",
