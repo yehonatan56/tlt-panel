@@ -5,7 +5,6 @@ const connectDB = async () => {
   // todo:check url connection first
 
   const url = process.env.CONNECTION_STRING;
-  console.log(url);
   if (!url) {
     console.log("No connection string provided");
     return;

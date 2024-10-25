@@ -1,9 +1,10 @@
 import linkModel from "../models/links.model";
 
-export const createLinkServiceHandler = async (link) => {
+export const createLinkServiceHandler = async ({ link, image }) => {
   try {
     const linkDoc = new linkModel({
       link,
+      image,
     });
 
     await linkDoc.save();

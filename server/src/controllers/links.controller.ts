@@ -26,7 +26,7 @@ const createLinkCtrl = async (
   next: NextFunction,
 ) => {
   try {
-    const link = await createLinkServiceHandler(req);
+    const link = await createLinkServiceHandler(req.body);
     res.json(link);
   } catch (e) {
     res.json(e);
@@ -72,6 +72,12 @@ const getPagesCtrl = async (
   }
 };
 
+const uploadCtrl = async (req: Request, res: Response, next: NextFunction) => {
+  res.json({
+    image: req.fileGenaratedName,
+  });
+};
+
 const purchaseCtrl = async (
   req: Request,
   res: Response,
@@ -83,10 +89,6 @@ const purchaseCtrl = async (
   } catch (e) {
     res.json(e);
   }
-};
-
-const uploadCtrl = async (req: Request, res: Response, next: NextFunction) => {
-  res.json(req.file.originalname);
 };
 
 export {

@@ -3,10 +3,10 @@ import {
   isAdminUserMW,
   isAuthorizedUserMW,
 } from "../middlewars/auth.middleware";
-const {
+import {
   getUsernamesCtrl,
   registerCtrl,
-} = require("../controllers/users.controller");
+} from "../controllers/users.controller";
 
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createRef, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button } from "@mantine/core";
 import { addLinkLogic } from "../../logic/links.ts";
@@ -7,9 +7,14 @@ const AddLink = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [link, setLink] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [fileState, setFileState] = useState("");
+
+  const file = createRef();
+
   const submitLink = async () => {
     console.log(link);
-    const res = await addLinkLogic(link);
+
+    const res = await addLinkLogic(link, fileState);
     if (res.code === 11000) {
       setError("Link already exists");
       return;
@@ -25,6 +30,14 @@ const AddLink = () => {
           value={link}
           onChange={(e) => setLink(e.target.value)}
           style={{ width: "100%" }}
+        />
+        <input
+          type="file"
+          name="file"
+          id="file"
+          className="inputfile"
+          ref={file}
+          onChange={(e) => setFileState(e.currentTarget.files[0])}
         />
         {error && <p style={{ color: "red" }}>{error}</p>}
         <Button onClick={() => submitLink()}>Submit</Button>
