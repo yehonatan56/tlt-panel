@@ -1,7 +1,9 @@
+import { NextFunction } from "express";
+
 const PREFIX_URL = "https://thelosttreasures.net/?";
 
-module.exports = (schema) => {
-  schema.pre("save", function (next) {
+const linkHook = (schema) => {
+  schema.pre("save", function (next: NextFunction) {
     if (!this.link.startsWith(PREFIX_URL)) {
       this.link = PREFIX_URL + this.link;
     }
@@ -9,3 +11,5 @@ module.exports = (schema) => {
     next();
   });
 };
+
+export default linkHook;

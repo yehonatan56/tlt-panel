@@ -1,10 +1,12 @@
 import { Button } from "@mantine/core";
+import fallbackImage from "../../assets/logo.png";
 
 type Props = {
   list: {
     _id: string;
     link: string;
     purchases: number;
+    image: string;
   }[];
   deleteLink: (id: string) => void;
 };
@@ -28,19 +30,33 @@ const List = ({ list, deleteLink }: Props) => {
           <li
             key={index}
             style={{
+              position: "relative",
               padding: "10px",
               border: "1px solid #ccc",
               margin: "1rem",
               borderRadius: "5px",
               maxWidth: "300px",
               textAlign: "center",
-              maxHeight: "150px",
             }}
           >
             <a href={item.link} style={{ textDecoration: "none" }}>
               {item.link}
             </a>
             <p>Purchases: {item.purchases}</p>
+            <img
+              src={
+                item.image.includes("undefined") ? fallbackImage : item.image
+              }
+              style={{
+                width: "50px",
+                height: "50px",
+                objectFit: "cover",
+                borderRadius: "5px",
+                margin: "10px",
+              }}
+              alt="link"
+            />
+            <br />
             <Button
               style={{
                 backgroundColor: "red",
