@@ -9,7 +9,7 @@ const AddLink = () => {
   const [error, setError] = useState<string>("");
   const [fileState, setFileState] = useState("");
 
-  const file = createRef();
+  const file = createRef<HTMLElement>();
 
   const submitLink = async () => {
     console.log(link);
