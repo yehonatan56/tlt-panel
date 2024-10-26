@@ -1,4 +1,4 @@
-import { createRef, useState } from "react";
+import { createRef, useState, ReactHTMLElement } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button } from "@mantine/core";
 import { addLinkLogic } from "../../logic/links.ts";
@@ -9,7 +9,7 @@ const AddLink = () => {
   const [error, setError] = useState<string>("");
   const [fileState, setFileState] = useState("");
 
-  const file = createRef<HTMLElement>();
+  const file = createRef();
 
   const submitLink = async () => {
     console.log(link);
@@ -22,6 +22,8 @@ const AddLink = () => {
     console.log(res);
     close();
   };
+
+  // @ts-ignore
   return (
     <>
       <Modal opened={opened} onClose={close} title="Add link">
@@ -31,6 +33,7 @@ const AddLink = () => {
           onChange={(e) => setLink(e.target.value)}
           style={{ width: "100%" }}
         />
+
         <input
           type="file"
           name="file"
