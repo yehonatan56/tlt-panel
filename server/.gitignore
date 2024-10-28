@@ -1,6 +1,5 @@
 node_modules/
 .env
-src/public/uploads/
 coverage/
 /dist/
 .env.test
