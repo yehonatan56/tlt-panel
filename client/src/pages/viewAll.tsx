@@ -9,6 +9,7 @@ import { Pagination } from "@mantine/core";
 import Filters from "../components/viewAll/filters.tsx";
 
 const ViewAll = () => {
+  debugger;
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState({ page: 1 });
   const [total, setTotal] = useState(0);
