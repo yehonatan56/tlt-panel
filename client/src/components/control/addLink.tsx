@@ -9,7 +9,8 @@ const AddLink = () => {
   const [error, setError] = useState<string>("");
   const [fileState, setFileState] = useState<File | null>(null);
 
-  const file = useRef<HTMLInputElement>(null);
+  // Define `file` as a ref of type HTMLInputElement or null
+  const file = useRef<HTMLInputElement | null>(null);
 
   const submitLink = async () => {
     console.log(link);
