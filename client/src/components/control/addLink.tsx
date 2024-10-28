@@ -1,4 +1,4 @@
-import { createRef, useState, ReactHTMLElement } from "react";
+import { useRef, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button } from "@mantine/core";
 import { addLinkLogic } from "../../logic/links.ts";
@@ -7,9 +7,9 @@ const AddLink = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [link, setLink] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [fileState, setFileState] = useState("");
+  const [fileState, setFileState] = useState<File | null>(null);
 
-  const file = createRef();
+  const file = useRef<HTMLInputElement>(null);
 
   const submitLink = async () => {
     console.log(link);
@@ -23,7 +23,6 @@ const AddLink = () => {
     close();
   };
 
-  // @ts-ignore
   return (
     <>
       <Modal opened={opened} onClose={close} title="Add link">
@@ -40,7 +39,11 @@ const AddLink = () => {
           id="file"
           className="inputfile"
           ref={file}
-          onChange={(e) => setFileState(e.currentTarget.files[0])}
+          onChange={(e) =>
+            setFileState(
+              e.currentTarget.files ? e.currentTarget.files[0] : null,
+            )
+          }
         />
         {error && <p style={{ color: "red" }}>{error}</p>}
         <Button onClick={() => submitLink()}>Submit</Button>
