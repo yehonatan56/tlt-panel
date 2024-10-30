@@ -8,6 +8,7 @@ import {
   getPagesCtrl,
   purchaseCtrl,
   uploadCtrl,
+  editLinkCtrl,
 } from "../controllers/links.controller";
 import { uploadMW } from "../middlewars/upload.miiddleware";
 const router = express.Router();
@@ -18,7 +19,7 @@ router.get("/highest", isAuthorizedUserMW, getHighestPurchasesCtrl);
 router.post("/", isAuthorizedUserMW, createLinkCtrl);
 router.post("/purchase", purchaseCtrl);
 router.post("/upload", isAuthorizedUserMW, uploadMW.single("file"), uploadCtrl);
-
+router.put("/:id", isAuthorizedUserMW, editLinkCtrl);
 router.delete("/:id", isAuthorizedUserMW, deleteLinkCtrl);
 
 export default router;

@@ -9,7 +9,6 @@ const connectDB = async () => {
     console.log("No connection string provided");
     return;
   }
-  debugger;
   await mongoose
     .connect(url)
     .then(() => {

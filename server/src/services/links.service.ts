@@ -81,3 +81,16 @@ export const purchaseServiceHandler = async (link) => {
     return err;
   }
 };
+
+export const editLinkServiceHandler = async (id, { link, image }) => {
+  try {
+    const linkDoc = await linkModel.findOneAndUpdate(
+      { _id: id },
+      { link, image },
+      { new: true },
+    );
+    return linkDoc;
+  } catch (err) {
+    return err;
+  }
+};

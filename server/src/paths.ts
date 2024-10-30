@@ -8,6 +8,7 @@ const envPath = (): string => {
   }
   return ".env";
 };
-export const PUBLIC_PATH = path.join(__dirname, "public");
+export const PUBLIC_PATH = path.join(__dirname, "..", "public");
 
 export const ENV_PATH = path.join(__dirname, "..", envPath());
+console.log(PUBLIC_PATH);
