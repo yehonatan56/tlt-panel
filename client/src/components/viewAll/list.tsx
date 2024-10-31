@@ -31,9 +31,11 @@ const baseItem: Item = {
 };
 
 const List = ({ list, deleteLink }: Props) => {
+  // @ts-ignore
   const [itemState, setItem] = useState<Item>(baseItem);
 
   const openModal = (item: Item) => setItem({ ...item, isEditing: true });
+  // @ts-ignore
   const closeModal = () => setItem(baseItem);
 
   return (
