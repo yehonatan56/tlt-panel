@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button } from "@mantine/core";
 import { addLinkLogic } from "../../logic/links.ts";
+import { useFilePreview } from "../../hooks/useFilePreview.tsx";
 
 const AddLink = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -11,6 +12,8 @@ const AddLink = () => {
 
   // Define `file` as a ref of type HTMLInputElement or null
   const file = useRef<HTMLInputElement | null>(null);
+
+  const preview = useFilePreview(fileState);
 
   const submitLink = async () => {
     console.log(link);
@@ -47,6 +50,13 @@ const AddLink = () => {
           }
         />
         {error && <p style={{ color: "red" }}>{error}</p>}
+        {preview && (
+          <img
+            src={preview}
+            alt="preview"
+            style={{ width: "300px", height: "300px" }}
+          />
+        )}
         <Button onClick={() => submitLink()}>Submit</Button>
       </Modal>
 

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Button, Modal } from "@mantine/core";
 import { updateLinkLogic } from "../../logic/links.ts";
+import { useFilePreview } from "../../hooks/useFilePreview.tsx";
 
 interface EditProps {
   id: string;
@@ -23,6 +24,7 @@ export default function Edit({
 
   const file = useRef<HTMLInputElement | null>(null);
 
+  const preview = useFilePreview(fileState);
   const submitLink = async () => {
     const res = await updateLinkLogic(id, link, fileState);
     if (res.code === 11000) {
@@ -54,6 +56,17 @@ export default function Edit({
             )
           }
         />
+
+        {preview && (
+          <img
+            src={preview}
+            alt="preview"
+            style={{
+              width: "300px",
+              height: "300px",
+            }}
+          />
+        )}
         {error && <p style={{ color: "red" }}>{error}</p>}
         <Button onClick={() => submitLink()}>Submit</Button>
       </Modal>
