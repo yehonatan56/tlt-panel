@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Button } from "@mantine/core";
+import Edit from "./edit";
 import fallbackImage from "../../assets/logo.png";
 
-type Props = {
+interface Props {
   list: {
     _id: string;
     link: string;
@@ -9,11 +11,41 @@ type Props = {
     image: string;
   }[];
   deleteLink: (id: string) => void;
+}
+
+interface Item {
+  isEditing: boolean;
+  _id: string;
+  link: string;
+  purchases: number;
+  image: string;
+}
+
+const baseItem: Item = {
+  isEditing: false,
+  _id: "",
+  link: "",
+  purchases: 0,
+  image: "",
 };
+
 const List = ({ list, deleteLink }: Props) => {
-  // @ts-ignore
+  const [itemState, setItem] = useState<Item>(baseItem);
+
+  const openModal = (item: Item) => setItem({ ...item, isEditing: true });
+  const closeModal = () => setItem(baseItem);
+
   return (
     <div>
+      {itemState.isEditing && (
+        <Edit
+          id={itemState._id}
+          defaultLink={itemState.link}
+          reset={closeModal}
+          opened={itemState.isEditing}
+          onClose={closeModal}
+        />
+      )}
       <ul
         style={{
           listStyle: "none",
@@ -26,9 +58,9 @@ const List = ({ list, deleteLink }: Props) => {
         }}
       >
         {list.length === 0 && <p>No links found</p>}
-        {list.map((item, index) => (
+        {list.map((item) => (
           <li
-            key={index}
+            key={item._id}
             style={{
               position: "relative",
               padding: "10px",
@@ -54,19 +86,33 @@ const List = ({ list, deleteLink }: Props) => {
               }}
               alt="link"
             />
-            <br />
-            <Button
-              style={{
-                backgroundColor: "red",
-                opacity: 0.8,
-                color: "#fff",
-                borderRadius: "5px",
-                padding: "10px",
-              }}
-              onClick={() => deleteLink(item._id)}
-            >
-              X
-            </Button>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                style={{
+                  backgroundColor: "red",
+                  opacity: 0.8,
+                  color: "#fff",
+                  borderRadius: "5px",
+                  padding: "10px",
+                }}
+                onClick={() => deleteLink(item._id)}
+              >
+                X
+              </Button>
+              <Button
+                style={{
+                  backgroundColor: "blue",
+                  opacity: 0.8,
+                  color: "#fff",
+                  borderRadius: "5px",
+                  padding: "10px",
+                  marginLeft: "10px",
+                }}
+                onClick={() => openModal({ ...item, isEditing: true })}
+              >
+                E
+              </Button>
+            </div>
           </li>
         ))}
       </ul>
