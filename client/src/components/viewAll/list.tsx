@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@mantine/core";
-import Edit from "./edit";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 import fallbackImage from "../../assets/logo.png";
 
 interface Props {
@@ -13,13 +14,13 @@ interface Props {
   deleteLink: (id: string) => void;
 }
 
-interface Item {
+type Item = {
   isEditing: boolean;
   _id: string;
   link: string;
   purchases: number;
   image: string;
-}
+};
 
 const baseItem: Item = {
   isEditing: false,
@@ -37,15 +38,6 @@ const List = ({ list, deleteLink }: Props) => {
 
   return (
     <div>
-      {itemState.isEditing && (
-        <Edit
-          id={itemState._id}
-          defaultLink={itemState.link}
-          reset={closeModal}
-          opened={itemState.isEditing}
-          onClose={closeModal}
-        />
-      )}
       <ul
         style={{
           listStyle: "none",
@@ -75,18 +67,25 @@ const List = ({ list, deleteLink }: Props) => {
               {item.link}
             </a>
             <p>Purchases: {item.purchases}</p>
-            <img
-              src={item.image || fallbackImage}
+
+            <Zoom>
+              <img
+                src={item.image || fallbackImage}
+                alt="preview"
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "cover",
+                }}
+              />
+            </Zoom>
+            <div
               style={{
-                width: "50px",
-                height: "50px",
-                objectFit: "cover",
-                borderRadius: "5px",
-                margin: "10px",
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "10px",
               }}
-              alt="link"
-            />
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            >
               <Button
                 style={{
                   backgroundColor: "red",
