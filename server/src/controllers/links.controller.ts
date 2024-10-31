@@ -6,6 +6,7 @@ import {
   getHighestPurchasesServiceHandler,
   getPagesServiceHandler,
   purchaseServiceHandler,
+  editLinkServiceHandler,
 } from "../services/links.service";
 const getLinksCtrl = async (
   req: Request,
@@ -91,6 +92,18 @@ const purchaseCtrl = async (
   }
 };
 
+const editLinkCtrl = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const link = await editLinkServiceHandler(req.params.id, req.body);
+    res.json(link);
+  } catch (e) {
+    res.json(e);
+  }
+};
 export {
   getLinksCtrl,
   createLinkCtrl,
@@ -99,4 +112,5 @@ export {
   getPagesCtrl,
   purchaseCtrl,
   uploadCtrl,
+  editLinkCtrl,
 };

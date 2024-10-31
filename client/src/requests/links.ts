@@ -82,3 +82,20 @@ export const uploadFileRequest = async (file: any) => {
     .then((data) => data);
   return server + "/uploads/" + response.image;
 };
+
+export const updateLinkRequest = async (
+  id: string,
+  link: string,
+  image: string,
+) => {
+  const linkObj = { link, image };
+
+  const response = await fetch(server + "/links/" + id, {
+    method: "PUT",
+    headers: getHeaders(),
+    body: JSON.stringify(linkObj),
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+  return response;
+};
