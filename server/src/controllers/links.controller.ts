@@ -85,7 +85,7 @@ const purchaseCtrl = async (
   next: NextFunction,
 ) => {
   try {
-    const link = await purchaseServiceHandler(req.body.link);
+    const link = await purchaseServiceHandler(req.body.link, req.customerID);
     res.json(link);
   } catch (e) {
     res.json(e);

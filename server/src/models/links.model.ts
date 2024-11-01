@@ -20,6 +20,13 @@ const linkSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    customers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "customers",
+        required: [true, "Customer is required"],
+      },
+    ],
   },
   { timestamps: true },
 );
