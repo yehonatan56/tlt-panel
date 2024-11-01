@@ -68,11 +68,14 @@ export const getPagesServiceHandler = async () => {
     return err;
   }
 };
-export const purchaseServiceHandler = async (link) => {
+export const purchaseServiceHandler = async (link, customerID: string) => {
   try {
     const linkDoc = await linkModel.findOneAndUpdate(
       { link },
-      { $inc: { purchases: 1 } },
+      {
+        $inc: { purchases: 1 },
+        $push: { customers: customerID },
+      },
       { new: true },
     );
 

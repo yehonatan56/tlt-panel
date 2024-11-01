@@ -11,13 +11,14 @@ import {
   editLinkCtrl,
 } from "../controllers/links.controller";
 import { uploadMW } from "../middlewars/upload.miiddleware";
+import { addCustomerCtrl } from "../controllers/customers.cotroller";
 const router = express.Router();
 
 router.get("/", isAuthorizedUserMW, getLinksCtrl);
 router.get("/pages", isAuthorizedUserMW, getPagesCtrl);
 router.get("/highest", isAuthorizedUserMW, getHighestPurchasesCtrl);
 router.post("/", isAuthorizedUserMW, createLinkCtrl);
-router.post("/purchase", purchaseCtrl);
+router.post("/purchase", addCustomerCtrl, purchaseCtrl);
 router.post("/upload", isAuthorizedUserMW, uploadMW.single("file"), uploadCtrl);
 router.put("/:id", isAuthorizedUserMW, editLinkCtrl);
 router.delete("/:id", isAuthorizedUserMW, deleteLinkCtrl);

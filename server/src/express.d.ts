@@ -6,6 +6,7 @@ declare global {
       user?: IUser;
       userId?: string;
       fileGenaratedName?: string;
+      customerID?: string;
     }
   }
 }
