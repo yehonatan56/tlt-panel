@@ -74,7 +74,7 @@ export const purchaseServiceHandler = async (link, customerID: string) => {
       { link },
       {
         $inc: { purchases: 1 },
-        $push: { customers: customerID },
+        $addToSet: { customers: customerID },
       },
       { new: true },
     );
