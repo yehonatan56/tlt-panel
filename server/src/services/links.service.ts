@@ -70,10 +70,11 @@ export const getPagesServiceHandler = async () => {
 };
 export const purchaseServiceHandler = async (link, customerID: string) => {
   try {
-    const linkDoc = await linkModel.findOneAndUpdate(
+    const linkDoc = await linkModel.updateOne(
       { link },
       {
         $inc: { purchases: 1 },
+
         $addToSet: { customers: customerID },
       },
       { new: true },
