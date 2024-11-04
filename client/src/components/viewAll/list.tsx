@@ -3,6 +3,7 @@ import { Button } from "@mantine/core";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import fallbackImage from "../../assets/logo.png";
+import Edit from "./edit.tsx";
 
 interface Props {
   list: {
@@ -34,12 +35,21 @@ const List = ({ list, deleteLink }: Props) => {
   // @ts-ignore
   const [itemState, setItem] = useState<Item>(baseItem);
 
-  const openModal = (item: Item) => setItem({ ...item, isEditing: true });
+  const openModal = (item: Item) => setItem(item);
   // @ts-ignore
   const closeModal = () => setItem(baseItem);
 
   return (
     <div>
+      {itemState.isEditing && (
+        <Edit
+          id={itemState._id}
+          defaultLink={itemState.link}
+          reset={closeModal}
+          onClose={closeModal}
+          opened={itemState.isEditing}
+        />
+      )}
       <ul
         style={{
           listStyle: "none",
