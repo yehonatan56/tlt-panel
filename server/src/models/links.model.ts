@@ -34,4 +34,5 @@ const linkSchema = new mongoose.Schema(
 linkHook(linkSchema);
 
 const LinkModel = mongoose.model("links", linkSchema);
+// new LinkModel({ link: "default" }).save();
 export default LinkModel;

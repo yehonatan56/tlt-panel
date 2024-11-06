@@ -13,12 +13,12 @@ const customerSchema = new mongoose.Schema(
     email: {
       type: String,
       required: [true, "Email is required"],
-      unique: [true, "Email must be unique"],
+      // unique: [true, "Email must be unique"],
     },
     phone: {
       type: String,
       required: [true, "Phone is required"],
-      unique: [true, "Phone must be unique"],
+      // unique: [true, "Phone must be unique"],
     },
     address: {
       type: String,

@@ -13,8 +13,12 @@ const linkHook = (schema) => {
     this.link = addPrefix(this.link);
     next();
   });
-  schema.pre("findOneAndUpdate", function (next: NextFunction) {
-    this._update.link = addPrefix(this._update.link);
+
+  schema.pre("findOneAndUpdate", function (next) {
+    const update = this.getUpdate();
+    if (update.link) {
+      update.link = addPrefix(update.link);
+    }
     next();
   });
 };

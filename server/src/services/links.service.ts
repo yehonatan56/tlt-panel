@@ -80,6 +80,17 @@ export const purchaseServiceHandler = async (link, customerID: string) => {
       { new: true },
     );
 
+    if (linkDoc.modifiedCount === 0) {
+      const linkDoc = await linkModel.findOneAndUpdate(
+        { link: "https://thelosttreasures.net/?default" },
+        {
+          $inc: { purchases: 1 },
+          $addToSet: { customers: customerID },
+        },
+        { new: true },
+      );
+      return linkDoc;
+    }
     return linkDoc;
   } catch (err) {
     return err;
