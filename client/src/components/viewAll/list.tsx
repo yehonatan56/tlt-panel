@@ -91,39 +91,41 @@ const List = ({ list, deleteLink }: Props) => {
                 }}
               />
             </Zoom>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "10px",
-              }}
-            >
-              <Button
+            {item.link.split("?")[1] !== "default" && (
+              <div
                 style={{
-                  backgroundColor: "red",
-                  opacity: 0.8,
-                  color: "#fff",
-                  borderRadius: "5px",
-                  padding: "10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "10px",
                 }}
-                onClick={() => deleteLink(item._id)}
               >
-                X
-              </Button>
-              <Button
-                style={{
-                  backgroundColor: "blue",
-                  opacity: 0.8,
-                  color: "#fff",
-                  borderRadius: "5px",
-                  padding: "10px",
-                  marginLeft: "10px",
-                }}
-                onClick={() => openModal({ ...item, isEditing: true })}
-              >
-                E
-              </Button>
-            </div>
+                <Button
+                  style={{
+                    backgroundColor: "red",
+                    opacity: 0.8,
+                    color: "#fff",
+                    borderRadius: "5px",
+                    padding: "10px",
+                  }}
+                  onClick={() => deleteLink(item._id)}
+                >
+                  X
+                </Button>
+                <Button
+                  style={{
+                    backgroundColor: "blue",
+                    opacity: 0.8,
+                    color: "#fff",
+                    borderRadius: "5px",
+                    padding: "10px",
+                    marginLeft: "10px",
+                  }}
+                  onClick={() => openModal({ ...item, isEditing: true })}
+                >
+                  E
+                </Button>
+              </div>
+            )}
           </li>
         ))}
       </ul>
