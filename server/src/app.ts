@@ -1,6 +1,7 @@
 import express from "express";
 import configExpress from "./config/express";
 import connectDB from "./config/db";
+import logger from "./utils/logger";
 
 const app = express();
 
@@ -9,7 +10,7 @@ connectDB()
     configExpress(app);
 
     app.listen(3000, () => {
-      console.log("Server is running on port 3000");
+      logger.info("", "Server started on port 3000");
     });
   })
   .catch((err) => {
