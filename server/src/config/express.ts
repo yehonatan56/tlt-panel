@@ -1,13 +1,10 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import morgan from "morgan";
-import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import routes from "../routes/index";
-import { PUBLIC_PATH, ENV_PATH } from "../paths";
+import { PUBLIC_PATH } from "../paths";
 import logger from "../utils/logger";
-dotenv.config({ path: ENV_PATH });
 
 export default (app: Application) => {
   app.use(cookieParser());
@@ -20,5 +17,6 @@ export default (app: Application) => {
     logger.info("", `${req.method} ${req.originalUrl}`);
     next();
   });
+
   routes(app);
 };

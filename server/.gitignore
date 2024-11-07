@@ -3,3 +3,6 @@ node_modules/
 coverage/
 /dist/
 .env.test
+/logs
+/public/uploads
+.env.test
