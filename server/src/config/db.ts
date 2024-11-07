@@ -5,7 +5,7 @@ import logger from "../utils/logger";
 const connectDB = async () => {
   // todo:check url connection first
 
-  const url = process.env.CONNECTION_STRING;
+  const url: string = process.env.CONNECTION_STRING;
   if (!url) {
     logger.error("", "No connection string provided");
     return;

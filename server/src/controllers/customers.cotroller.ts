@@ -6,7 +6,7 @@ const addCustomerCtrl = async (
   next: NextFunction,
 ) => {
   try {
-    const id = await addCustomerServiceHandler(req.body);
+    const id: string = await addCustomerServiceHandler(req.body);
     req.customerID = id;
     next();
   } catch (e) {

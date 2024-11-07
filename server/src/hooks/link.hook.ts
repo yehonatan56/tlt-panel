@@ -1,6 +1,6 @@
 import { NextFunction } from "express";
 
-const PREFIX_URL = "https://thelosttreasures.net/?";
+const PREFIX_URL: string = "https://thelosttreasures.net/?";
 
 const addPrefix = (link: string) => {
   if (link.startsWith(PREFIX_URL)) {
@@ -14,7 +14,7 @@ const linkHook = (schema) => {
     next();
   });
 
-  schema.pre("findOneAndUpdate", function (next) {
+  schema.pre("findOneAndUpdate", function (next: NextFunction) {
     const update = this.getUpdate();
     if (update.link) {
       update.link = addPrefix(update.link);
