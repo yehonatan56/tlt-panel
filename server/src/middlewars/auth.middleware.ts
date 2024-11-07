@@ -16,10 +16,6 @@ export const isAuthorizedUserMW = async (
     ? token.replace("Bearer ", "")
     : token;
 
-  if (!token) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-
   try {
     const decoded = jwt.verify(jwtString, process.env.SECRET);
     // @ts-ignore

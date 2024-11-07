@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import logger from "../utils/logger";
 
 // todo: significant names - connectDB
 const connectDB = async () => {
@@ -6,16 +7,16 @@ const connectDB = async () => {
 
   const url = process.env.CONNECTION_STRING;
   if (!url) {
-    console.log("No connection string provided");
+    logger.error("", "No connection string provided");
     return;
   }
   await mongoose
     .connect(url)
     .then(() => {
-      console.log("Connected to the database");
+      logger.info("", "Connected to the database");
     })
     .catch((err) => {
-      console.log(err);
+      logger.error("", "Failed to connect to the database", { error: err });
     });
 };
 

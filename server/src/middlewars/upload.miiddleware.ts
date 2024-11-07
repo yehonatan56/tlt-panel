@@ -8,7 +8,6 @@ const storage = multer.diskStorage({
     const fileName = Date.now() + "." + file.originalname.split(".")[1];
 
     req.fileGenaratedName = fileName;
-    console.log(req.fileGenaratedName);
     cb(null, fileName);
   },
 });

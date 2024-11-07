@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { loginServiceHandler } from "../services/auth.service";
+import logger from "../utils/logger";
 
 export const loginCtrl = async (
   req: Request,
