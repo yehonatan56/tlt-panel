@@ -1,21 +1,18 @@
-import { Request, Response, NextFunction } from "express";
-import { loginServiceHandler } from "../services/auth.service";
-import logger from "../utils/logger";
+import { Request, Response, NextFunction } from 'express';
+import { loginServiceHandler } from '../services/auth.service';
+import logger from '../utils/logger';
 
-export const loginCtrl = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  try {
-    const { username, password } = req.body;
-    const { message, status, token } = await loginServiceHandler({
-      username,
-      password,
-    });
-    res.cookie("token", token, { httpOnly: true });
-    res.status(status).json({ message, token });
-  } catch (e) {
-    next(e);
-  }
+export const loginCtrl = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { username, password } = req.body;
+        const { message, status, token } = await loginServiceHandler({ username, password });
+
+        logger.info(req.id, 'login successfully, generated token');
+
+        res.cookie('token', token, { httpOnly: true });
+        res.status(status).json({ message, token });
+    } catch (e) {
+        logger.error(req.id, 'failed to login', { error: e });
+        next(e);
+    }
 };

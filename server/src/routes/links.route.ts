@@ -1,26 +1,29 @@
-import express from "express";
-import { isAuthorizedUserMW } from "../middlewars/auth.middleware";
+import express from 'express';
+import { isAuthorizedUserMW } from '../middlewars/auth.middleware';
 import {
-  createLinkCtrl,
-  deleteLinkCtrl,
-  getHighestPurchasesCtrl,
-  getLinksCtrl,
-  getPagesCtrl,
-  purchaseCtrl,
-  uploadCtrl,
-  editLinkCtrl,
-} from "../controllers/links.controller";
-import { uploadMW } from "../middlewars/upload.miiddleware";
-import { addCustomerCtrl } from "../controllers/customers.cotroller";
+    createLinkCtrl,
+    deleteLinkCtrl,
+    getHighestPurchasesCtrl,
+    getLinksCtrl,
+    getPagesCtrl,
+    purchaseCtrl,
+    uploadCtrl,
+    editLinkCtrl,
+} from '../controllers/links.controller';
+import { uploadMW } from '../middlewars/upload.miiddleware';
+import { addCustomerCtrl } from '../controllers/customers.cotroller';
+
 const router = express.Router();
 
-router.get("/", isAuthorizedUserMW, getLinksCtrl);
-router.get("/pages", isAuthorizedUserMW, getPagesCtrl);
-router.get("/highest", isAuthorizedUserMW, getHighestPurchasesCtrl);
-router.post("/", isAuthorizedUserMW, createLinkCtrl);
-router.post("/purchase", addCustomerCtrl, purchaseCtrl);
-router.post("/upload", isAuthorizedUserMW, uploadMW.single("file"), uploadCtrl);
-router.put("/:id", isAuthorizedUserMW, editLinkCtrl);
-router.delete("/:id", isAuthorizedUserMW, deleteLinkCtrl);
+// todo: add loggerMW like in auth routes
+
+router.get('/', isAuthorizedUserMW, getLinksCtrl);
+router.get('/pages', isAuthorizedUserMW, getPagesCtrl);
+router.get('/highest', isAuthorizedUserMW, getHighestPurchasesCtrl);
+router.post('/', isAuthorizedUserMW, createLinkCtrl);
+router.post('/purchase', addCustomerCtrl, purchaseCtrl);
+router.post('/upload', isAuthorizedUserMW, uploadMW.single('file'), uploadCtrl);
+router.put('/:id', isAuthorizedUserMW, editLinkCtrl);
+router.delete('/:id', isAuthorizedUserMW, deleteLinkCtrl);
 
 export default router;
