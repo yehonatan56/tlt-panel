@@ -13,6 +13,6 @@ export const loginCtrl = async (req: Request, res: Response, next: NextFunction)
         res.status(status).json({ message, token });
     } catch (e) {
         logger.error(req.id, 'failed to login', { error: e });
-        next(e);
+        res.status(401).send(e?.message ?? e);
     }
 };

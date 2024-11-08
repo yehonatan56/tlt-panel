@@ -12,11 +12,11 @@ import {
 } from '../controllers/links.controller';
 import { uploadMW } from '../middlewars/upload.miiddleware';
 import { addCustomerCtrl } from '../controllers/customers.cotroller';
+import { loggerMW } from '../middlewars/logger.middleware';
 
 const router = express.Router();
 
-// todo: add loggerMW like in auth routes
-
+router.use(loggerMW);
 router.get('/', isAuthorizedUserMW, getLinksCtrl);
 router.get('/pages', isAuthorizedUserMW, getPagesCtrl);
 router.get('/highest', isAuthorizedUserMW, getHighestPurchasesCtrl);

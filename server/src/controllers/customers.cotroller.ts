@@ -7,8 +7,7 @@ const addCustomerCtrl = async (req: Request, res: Response, next: NextFunction) 
         req.customerID = id;
         next();
     } catch (e) {
-        // dont send error as json
-        res.json(e);
+        res.status(401).send(e?.message ?? e);
     }
 };
 

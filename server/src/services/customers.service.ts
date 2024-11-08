@@ -1,14 +1,16 @@
-import customerModel from "../models/customers.model";
-import { ICustomer } from "../interfaces/customer.interface";
-const addCustomerServiceHandler = async (customer: ICustomer) => {
-  try {
-    const customerDoc = new customerModel(customer);
+import customerModel from '../models/customers.model';
+import { ICustomer } from '../interfaces/customer.interface';
+import mongoose from 'mongoose';
 
-    await customerDoc.save();
-    return customerDoc._id;
-  } catch (err) {
-    return err;
-  }
+const addCustomerServiceHandler = async (customer: ICustomer): Promise<mongoose.Types.ObjectId> => {
+    try {
+        const customerDoc = new customerModel(customer);
+
+        await customerDoc.save();
+        return customerDoc._id;
+    } catch (err) {
+        return err;
+    }
 };
 
 export { addCustomerServiceHandler };
