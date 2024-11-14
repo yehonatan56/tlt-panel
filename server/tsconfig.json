@@ -5,9 +5,17 @@
     "target": "es2017",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": [
+      "./src/express.d.ts"
+    ]
   },
-  "lib": ["es2015"],
+
+    "include": [
+      "src/**/*.ts",
+      "node_modules/@types/jest/index.d.ts"
+    ],
+  "lib": ["es2015"]
 
 
 }
