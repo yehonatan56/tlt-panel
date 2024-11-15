@@ -1,9 +1,10 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import routes from '../routes/index';
 import { PUBLIC_PATH } from '../paths';
+import logger from '../utils/logger';
 
 export default (app: Application) => {
     app.use(cookieParser());
@@ -15,5 +16,7 @@ export default (app: Application) => {
     // todo: add requestID mw (add uuid for req.id)
     routes(app);
 
-    // todo: add error handler mw
+    app.use((err, _req: Request, _res: Response, _next: NextFunction) => {
+        logger.error('', err.message, err.stack);
+    });
 };

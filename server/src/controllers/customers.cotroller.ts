@@ -8,6 +8,7 @@ const addCustomerCtrl = async (req: Request, res: Response, next: NextFunction) 
         next();
     } catch (e) {
         res.status(401).send(e?.message ?? e);
+        next(Error('Error adding customer'));
     }
 };
 

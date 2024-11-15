@@ -15,6 +15,7 @@ export const getLinksCtrl = async (req: Request, res: Response, next: NextFuncti
         res.json(links);
     } catch (e) {
         res.status(204).send(e?.message ?? e);
+        next(Error('Error getting links'));
     }
 };
 
@@ -24,6 +25,7 @@ export const createLinkCtrl = async (req: Request, res: Response, next: NextFunc
         res.json(link);
     } catch (e) {
         res.status(401).send(e?.message ?? e);
+        next(Error('Error creating link'));
     }
 };
 
@@ -33,6 +35,7 @@ export const deleteLinkCtrl = async (req: Request, res: Response, next: NextFunc
         res.json(link);
     } catch (e) {
         res.status(401).send(e?.message ?? e);
+        next(Error('Error deleting link'));
     }
 };
 
@@ -42,6 +45,7 @@ export const getHighestPurchasesCtrl = async (_req: Request, res: Response, next
         res.json(links);
     } catch (e) {
         res.status(204).send(e?.message ?? e);
+        next(Error('Error getting highest purchases'));
     }
 };
 
@@ -51,6 +55,7 @@ export const getPagesCtrl = async (_req: Request, res: Response, next: NextFunct
         res.json(pages);
     } catch (e) {
         res.status(204).send(e?.message ?? e);
+        next(Error('Error getting pages'));
     }
 };
 
@@ -65,6 +70,7 @@ export const purchaseCtrl = async (req: Request, res: Response, next: NextFuncti
     } catch (e) {
         // todo: consist status for bad requests like res.status(500).json(e)
         res.status(500).send(e?.message ?? e);
+        next(Error('Error purchasing link'));
     }
 };
 
@@ -74,5 +80,6 @@ export const editLinkCtrl = async (req: Request, res: Response, next: NextFuncti
         res.json(link);
     } catch (e) {
         res.status(500).send(e?.message ?? e);
+        next(Error('Error editing link'));
     }
 };
