@@ -9,7 +9,7 @@ import {
     editLinkServiceHandler,
 } from '../services/links.service';
 
-export const getLinksCtrl = async (req: Request, res: Response, next: NextFunction) => {
+export const getLinksCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const links = await getLinksServiceHandler(req.query);
         res.json(links);
@@ -19,7 +19,7 @@ export const getLinksCtrl = async (req: Request, res: Response, next: NextFuncti
     }
 };
 
-export const createLinkCtrl = async (req: Request, res: Response, next: NextFunction) => {
+export const createLinkCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const link = await createLinkServiceHandler(req.body);
         res.json(link);
@@ -29,7 +29,7 @@ export const createLinkCtrl = async (req: Request, res: Response, next: NextFunc
     }
 };
 
-export const deleteLinkCtrl = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteLinkCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const link = await deleteLinkServiceHandler(req.params.id);
         res.json(link);
@@ -39,7 +39,7 @@ export const deleteLinkCtrl = async (req: Request, res: Response, next: NextFunc
     }
 };
 
-export const getHighestPurchasesCtrl = async (_req: Request, res: Response, next: NextFunction) => {
+export const getHighestPurchasesCtrl = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const links = await getHighestPurchasesServiceHandler();
         res.json(links);
@@ -49,7 +49,7 @@ export const getHighestPurchasesCtrl = async (_req: Request, res: Response, next
     }
 };
 
-export const getPagesCtrl = async (_req: Request, res: Response, next: NextFunction) => {
+export const getPagesCtrl = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const pages = await getPagesServiceHandler();
         res.json(pages);
@@ -59,11 +59,11 @@ export const getPagesCtrl = async (_req: Request, res: Response, next: NextFunct
     }
 };
 
-export const uploadCtrl = async (req: Request, res: Response, next: NextFunction) => {
+export const uploadCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     res.json({ image: req.fileGenaratedName });
 };
 
-export const purchaseCtrl = async (req: Request, res: Response, next: NextFunction) => {
+export const purchaseCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const link = await purchaseServiceHandler(req.body.link, req.customerID);
         res.json(link);
@@ -74,7 +74,7 @@ export const purchaseCtrl = async (req: Request, res: Response, next: NextFuncti
     }
 };
 
-export const editLinkCtrl = async (req: Request, res: Response, next: NextFunction) => {
+export const editLinkCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const link = await editLinkServiceHandler(req.params.id, req.body);
         res.json(link);

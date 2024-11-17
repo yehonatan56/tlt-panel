@@ -20,7 +20,7 @@ export const getLinksServiceHandler = async (
         dateFrom: string;
         dateTo: string;
     }>
-) => {
+): Promise<ILink[]> => {
     const { page = undefined, min: purchasesLower = 0, max: purchasesHigh = '1000', dateFrom, dateTo } = filters;
 
     const links = await linkModel
@@ -41,7 +41,7 @@ export const getHighestPurchasesServiceHandler = async (): Promise<ILink[]> => {
     return links as unknown as ILink[];
 };
 
-export const getPagesServiceHandler = async () => {
+export const getPagesServiceHandler = async (): Promise<number> => {
     const linksPerPage = 8;
     const linksCount = await linkModel.countDocuments();
     const pages = Math.ceil(linksCount / linksPerPage);
