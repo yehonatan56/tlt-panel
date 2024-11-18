@@ -1,12 +1,12 @@
 import { NextFunction } from "express";
 
-const PREFIX_URL = "https://thelosttreasures.net/?";
+const PREFIX_URL = "https://thelosttreasures.net/";
 
 const addPrefix = (link: string) => {
   if (link.startsWith(PREFIX_URL)) {
     return link;
   }
-  return PREFIX_URL + link;
+  return PREFIX_URL + "?" + link;
 };
 const linkHook = (schema) => {
   schema.pre("save", function (next: NextFunction) {
