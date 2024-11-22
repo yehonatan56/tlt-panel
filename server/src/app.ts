@@ -2,11 +2,6 @@ import express from 'express';
 import configExpress from './config/express';
 import connectDB from './config/db';
 import logger from './utils/logger';
-import dotenv from 'dotenv';
-import { ENV_PATH } from './paths';
-
-dotenv.config({ path: ENV_PATH });
-
 const app = express();
 
 connectDB()

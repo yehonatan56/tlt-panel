@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/users.model';
-
+import { SECRET } from '../utils/enviromment-varibals';
 export const isAuthorizedUserMW = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
     const token = req.headers.authorization || req.cookies.token;
     if (!token) {
@@ -11,7 +11,7 @@ export const isAuthorizedUserMW = async (req: Request, res: Response, next: Next
     const jwtString = token.startsWith('Bearer') ? token.replace('Bearer ', '') : token;
 
     try {
-        const decoded = jwt.verify(jwtString, process.env.SECRET) as { id: string };
+        const decoded = jwt.verify(jwtString, SECRET) as { id: string };
         req.userId = decoded?.id;
         req.user = await userModel.findById(req.userId);
 

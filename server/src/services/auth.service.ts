@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/users.model';
+import { SECRET } from '../utils/enviromment-varibals';
 
 export const loginServiceHandler = async ({
     username,
@@ -20,7 +21,7 @@ export const loginServiceHandler = async ({
         return { message: 'Invalid credentials', status: 401, token: null };
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.SECRET);
+    const token = jwt.sign({ id: user._id }, SECRET);
 
     return { message: 'Logged in', status: 200, token };
 };
