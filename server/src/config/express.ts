@@ -12,6 +12,7 @@ export default (app: Application) => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(express.static(PUBLIC_PATH));
+    //    app.use(fileUpload({ useTempFiles: true }));
 
     // todo: add requestID mw (add uuid for req.id)
     routes(app);

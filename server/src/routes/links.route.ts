@@ -10,9 +10,9 @@ import {
     uploadCtrl,
     editLinkCtrl,
 } from '../controllers/links.controller';
-import { uploadMW } from '../middlewars/upload.miiddleware';
 import { addCustomerCtrl } from '../controllers/customers.cotroller';
 import { loggerMW } from '../middlewars/logger.middleware';
+import upload from '../utils/cloudinary';
 
 const router = express.Router();
 
@@ -22,7 +22,7 @@ router.get('/pages', isAuthorizedUserMW, getPagesCtrl);
 router.get('/highest', isAuthorizedUserMW, getHighestPurchasesCtrl);
 router.post('/', isAuthorizedUserMW, createLinkCtrl);
 router.post('/purchase', addCustomerCtrl, purchaseCtrl);
-router.post('/upload', isAuthorizedUserMW, uploadMW.single('file'), uploadCtrl);
+router.post('/upload', isAuthorizedUserMW, upload.single('image'), uploadCtrl);
 router.put('/:id', isAuthorizedUserMW, editLinkCtrl);
 router.delete('/:id', isAuthorizedUserMW, deleteLinkCtrl);
 

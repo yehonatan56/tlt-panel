@@ -3,6 +3,7 @@ import logger from '../utils/logger';
 
 const connectDB = async () => {
     const url: string = process.env.CONNECTION_STRING;
+    logger.info('', 'Connecting to the database', { url });
     if (!url) {
         logger.error('', 'No connection string provided');
         return;
