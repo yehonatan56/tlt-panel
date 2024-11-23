@@ -39,6 +39,10 @@ const Navbar = () => {
         Register
       </Anchor>
 
+      <Anchor component={Link} to="/customers" className={classes.link}>
+        Customers
+      </Anchor>
+
       <Button
         className={classes.link}
         onClick={() => {
