@@ -3,7 +3,7 @@ import { getCustomersServiceHandler, addCustomerServiceHandler } from '../servic
 
 const getCustomersCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const customers = await getCustomersServiceHandler(+req.params.page);
+        const customers = await getCustomersServiceHandler();
         res.json(customers);
     } catch (e) {
         res.status(204).send(e?.message ?? e);

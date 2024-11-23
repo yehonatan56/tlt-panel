@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Table } from "@mantine/core";
+import { Table } from "@mantine/core";
 import { getCustomersRequest } from "../requests/customers.ts";
 interface ICustomer {
   firstName: string;
@@ -12,13 +12,12 @@ interface ICustomer {
 
 const Customers = () => {
   const [customers, setCustomers] = useState<ICustomer[]>([]);
-  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
-    getCustomersRequest(page).then((data) => {
+    getCustomersRequest().then((data) => {
       setCustomers(data);
     });
-  }, [page]);
+  }, []);
   return (
     <div
       style={{
@@ -55,8 +54,6 @@ const Customers = () => {
           ))}
         </tbody>
       </Table>
-
-      <Button onClick={() => setPage(page + 1)}>Load More</Button>
     </div>
   );
 };
