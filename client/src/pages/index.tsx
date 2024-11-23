@@ -5,6 +5,7 @@ import ViewAll from "./viewAll.tsx";
 import Header from "../components/header";
 import Register from "../components/auth/register.tsx";
 import Auth from "../components/auth/auth.tsx";
+import Customers from "./customers.tsx";
 
 const PagesIndex = () => {
   const router = createBrowserRouter([
@@ -46,7 +47,16 @@ const PagesIndex = () => {
         </Header>
       ),
     },
-
+    {
+      path: "/customers",
+      element: (
+        <Header>
+          <Auth>
+            <Customers />
+          </Auth>
+        </Header>
+      ),
+    },
     {
       path: "/not-allowed",
       element: (
