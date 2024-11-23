@@ -1,6 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
-import { addCustomerServiceHandler } from '../services/customers.service';
+import { getCustomersServiceHandler, addCustomerServiceHandler } from '../services/customers.service';
 
+const getCustomersCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        const customers = await getCustomersServiceHandler(+req.params.page);
+        res.json(customers);
+    } catch (e) {
+        res.status(204).send(e?.message ?? e);
+        next(Error('Error getting customers'));
+    }
+};
 const addCustomerCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const id: string = await addCustomerServiceHandler(req.body);
@@ -12,4 +21,4 @@ const addCustomerCtrl = async (req: Request, res: Response, next: NextFunction):
     }
 };
 
-export { addCustomerCtrl };
+export { getCustomersCtrl, addCustomerCtrl };
