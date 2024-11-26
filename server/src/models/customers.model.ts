@@ -13,12 +13,11 @@ const customerSchema = new mongoose.Schema(
         email: {
             type: String,
             required: [true, 'Email is required'],
-            // unique: [true, "Email must be unique"],
         },
         phone: {
             type: String,
             required: [true, 'Phone is required'],
-            // unique: [true, "Phone must be unique"],
+            unique: [true, 'Phone must be unique'],
         },
         address: {
             type: String,
@@ -27,6 +26,10 @@ const customerSchema = new mongoose.Schema(
         city: {
             type: String,
             required: [true, 'City is required'],
+        },
+        purchases: {
+            type: Number,
+            default: 1,
         },
     },
     { timestamps: true }
