@@ -9,6 +9,7 @@ const addCustomerServiceHandler = async (customer: ICustomer): Promise<string> =
         { phone: customer.phone }, // Filter: Find by phone number
         {
             $inc: { purchases: 1 }, // Increment the "purchases" field
+            $push: { products: { $each: customer.products } }, // Add products to the "products" array
         },
         {
             upsert: true, // Create a new document if no match is found

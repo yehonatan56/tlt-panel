@@ -31,6 +31,15 @@ const customerSchema = new mongoose.Schema(
             type: Number,
             default: 1,
         },
+        pickupMethod: {
+            type: String,
+            required: [true, 'Pickup method is required'],
+        },
+        products: [
+            {
+                type: String,
+            },
+        ],
     },
     { timestamps: true }
 );
