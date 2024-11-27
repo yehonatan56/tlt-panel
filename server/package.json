@@ -7,7 +7,12 @@
     "start": "node dist/app.js",
     "build": "tsc",
     "watch": "nodemon src/app.ts",
-    "test": "jest --watchAll --detectOpenHandles"
+    "test": "jest --watchAll --detectOpenHandles",
+    "migrate-mongo:init": "migrate-mongo init",
+    "migrate-mongo:up": "migrate-mongo up",
+    "migrate-mongo:down": "migrate-mongo down",
+    "migrate-mongo:status": "migrate-mongo status",
+    "migrate-mongo:create": "migrate-mongo create purchase field"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +27,7 @@
     "express-fileupload": "^1.5.1",
     "express-session": "^1.18.0",
     "jsonwebtoken": "^9.0.2",
+    "migrate-mongo": "^11.0.0",
     "mongoose": "^8.6.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
