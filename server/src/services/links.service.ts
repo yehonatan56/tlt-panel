@@ -4,11 +4,13 @@ import { ILink } from '../interfaces/link.interface';
 export const createLinkServiceHandler = async ({ link, image }): Promise<ILink> => {
     const linkDoc = new linkModel({ link, image });
     await linkDoc.save();
+
     return linkDoc as unknown as ILink;
 };
 
 export const deleteLinkServiceHandler = async (id: string): Promise<ILink> => {
     const link = await linkModel.findByIdAndDelete(id);
+
     return link as unknown as ILink;
 };
 
@@ -26,7 +28,6 @@ export const getLinksServiceHandler = async (
     const links = await linkModel
         .find({
             purchases: { $gte: +purchasesLower, $lte: +purchasesHigh },
-
             // createdAt: { $gte: dateFrom, $lte: dateTo },
         })
         .limit(8)
@@ -47,12 +48,14 @@ export const getPagesServiceHandler = async (): Promise<number> => {
     const pages = Math.ceil(linksCount / linksPerPage);
     return pages;
 };
+
 export const purchaseServiceHandler = async (link: string, customerID: string): Promise<ILink> => {
+    // todo : make upsert command (findOneAndUpdate upsert true) instead of these code
+
     const linkDoc = await linkModel.updateOne(
         { link },
         {
             $inc: { purchases: 1 },
-
             $addToSet: { customers: customerID },
         },
         { new: true }
@@ -67,8 +70,10 @@ export const purchaseServiceHandler = async (link: string, customerID: string): 
             },
             { new: true }
         );
+
         return linkDoc as unknown as ILink;
     }
+
     return linkDoc as unknown as ILink;
 };
 
@@ -77,5 +82,6 @@ export const editLinkServiceHandler = async (
     { link, image }: { link: string; image: string }
 ): Promise<ILink> => {
     const linkDoc = await linkModel.findOneAndUpdate({ _id: id }, { link, image }, { new: true });
+
     return linkDoc as unknown as ILink;
 };

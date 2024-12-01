@@ -2,12 +2,19 @@ import path from 'path';
 import { NODE_ENV } from './utils/enviromment-varibals';
 
 const envPath = (): string => {
-    if (['local', 'localhost', undefined, ''].includes(NODE_ENV)) {
-        return '.env.local';
-    } else if (NODE_ENV === 'test') {
-        return '.env.test';
+    switch (NODE_ENV) {
+        case 'local':
+        case 'localhost':
+        case undefined:
+        case '':
+            return '.env.local';
+
+        case 'test':
+            return '.env.test';
+
+        default:
+            return '.env';
     }
-    return '.env';
 };
 export const PUBLIC_PATH = path.join(__dirname, '..', 'public');
 
