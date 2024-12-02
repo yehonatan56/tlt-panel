@@ -8,7 +8,6 @@ const getCustomersCtrl = async (_req: Request, res: Response, next: NextFunction
     } catch (e) {
         // todo: choose your response: or res.send or next(error)
         res.status(204).send(e?.message ?? e);
-        next(Error('Error getting customers'));
     }
 };
 
@@ -20,7 +19,6 @@ const addCustomerCtrl = async (req: Request, res: Response, next: NextFunction):
     } catch (e) {
         // todo: choose your response: or res.send or next(error)
         res.status(401).send(e?.message ?? e);
-        next(Error('Error adding customer'));
     }
 };
 
