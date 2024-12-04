@@ -18,7 +18,7 @@ const customerSchema = new mongoose.Schema<ICustomer>(
         phone: {
             type: String,
             required: [true, 'Phone is required'],
-            unique: true,
+            //   unique: true,
         },
         address: {
             type: String,
