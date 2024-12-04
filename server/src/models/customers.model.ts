@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import { ICustomer } from '../interfaces/customer.interface';
 
-const customerSchema = new mongoose.Schema(
+const customerSchema = new mongoose.Schema<ICustomer>(
     {
         firstName: {
             type: String,
@@ -17,7 +18,7 @@ const customerSchema = new mongoose.Schema(
         phone: {
             type: String,
             required: [true, 'Phone is required'],
-            unique: [true, 'Phone must be unique'],
+            //   unique: true,
         },
         address: {
             type: String,
@@ -35,14 +36,11 @@ const customerSchema = new mongoose.Schema(
             type: String,
             required: [true, 'Pickup method is required'],
         },
-        products: [
-            {
-                type: String,
-            },
-        ],
+        products: { type: [String], default: [] },
     },
     { timestamps: true }
 );
 
 const CustomerModel = mongoose.model('customers', customerSchema);
+
 export default CustomerModel;

@@ -7,7 +7,6 @@ const getUsernamesCtrl = async (_req: Request, res: Response, next: NextFunction
         res.send(users);
     } catch (e) {
         res.status(204).send(e?.message ?? e);
-        next(Error('Error getting usernames'));
     }
 };
 
@@ -17,7 +16,6 @@ const registerCtrl = async (req: Request, res: Response, next: NextFunction) => 
         res.send(users);
     } catch (e) {
         res.status(204).send(e?.message ?? e);
-        next(Error('Error registering user'));
     }
 };
 

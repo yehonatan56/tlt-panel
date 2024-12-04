@@ -13,6 +13,5 @@ export const loginCtrl = async (req: Request, res: Response, next: NextFunction)
         res.status(status).json({ message, token });
     } catch (e) {
         res.status(401).send(e?.message ?? e);
-        next(Error('User not found or invalid credentials'));
     }
 };
