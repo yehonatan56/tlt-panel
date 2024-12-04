@@ -11,6 +11,6 @@ client.on('message', (message) => {
     console.log(message.body);
 });
 
-client.initialize();
+client.initialize().then((r) => console.log('Whatsapp client initialized'));
 
 export default client;
