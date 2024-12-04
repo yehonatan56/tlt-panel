@@ -2,6 +2,7 @@ import express from 'express';
 import configExpress from './config/express';
 import connectDB from './config/db';
 import logger from './utils/logger';
+
 const app = express();
 
 connectDB()
