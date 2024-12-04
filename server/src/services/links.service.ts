@@ -52,18 +52,27 @@ export const getPagesServiceHandler = async (): Promise<number> => {
 export const purchaseServiceHandler = async (link: string, customerID: string): Promise<ILink> => {
     // todo : make upsert command (findOneAndUpdate upsert true) instead of these code
 
-    const linkDoc = await linkModel.findOneAndUpdate(
+    const linkDoc = await linkModel.updateOne(
         { link },
         {
-            $set: { link: 'https://thelosttreasures.net/?default' },
             $inc: { purchases: 1 },
             $addToSet: { customers: customerID },
         },
-        {
-            upsert: true,
-            new: true,
-        }
+        { new: true }
     );
+
+    if (linkDoc.modifiedCount === 0) {
+        const linkDoc = await linkModel.findOneAndUpdate(
+            { link: 'https://thelosttreasures.net/?default' },
+            {
+                $inc: { purchases: 1 },
+                $addToSet: { customers: customerID },
+            },
+            { new: true }
+        );
+
+        return linkDoc as unknown as ILink;
+    }
 
     return linkDoc as unknown as ILink;
 };
