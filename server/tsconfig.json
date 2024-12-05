@@ -9,14 +9,17 @@
     "types": [
       "./src/express.d.ts",
       "./src/waweb.d.ts"
-    ]
+    ],
+    "noEmit": true,
+    "noEmitOnError": true,
   },
 
     "include": [
       "src/**/*.ts",
       "node_modules/@types/jest/index.d.ts"
     ],
-  "lib": ["es2015"]
+  "lib": ["es2015"],
+
 
 
 }

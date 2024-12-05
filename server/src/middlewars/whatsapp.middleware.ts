@@ -1,4 +1,4 @@
-import client from '../utils/whatsapp';
+import client from '../utils/whatsapp.js';
 import { WHATSAPP_GROUP_ID } from '../utils/enviromment-varibals';
 
 export const whatsappMW = async (req, res, next) => {
