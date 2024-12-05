@@ -1,11 +1,11 @@
-import { Client } from 'whatsapp-web.js';
+import { Client, LocalAuth } from 'whatsapp-web.js';
 import qrcode from 'qrcode-terminal';
+import { SESSIONS_PATH } from '../paths';
 
 const client = new Client({
-    webVersionCache: {
-        type: 'remote',
-        remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html',
-    },
+    authStrategy: new LocalAuth({
+        dataPath: SESSIONS_PATH,
+    }),
 });
 
 client.on('qr', (qr) => {
@@ -16,6 +16,5 @@ client.on('message', (message) => {
     console.log(message.body);
 });
 
-client.initialize().then((r) => console.log('Whatsapp client initialized'));
-
+client.initialize().then(() => console.log('Client is ready'));
 export default client;
