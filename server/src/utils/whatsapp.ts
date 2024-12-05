@@ -1,11 +1,16 @@
-import { Client, LocalAuth } from 'whatsapp-web.js';
-import { SESSIONS_PATH } from '../paths';
+import { Client } from 'whatsapp-web.js';
+import qrcode from 'qrcode-terminal';
 
-const client = new Client({
-    authStrategy: new LocalAuth({
-        dataPath: SESSIONS_PATH,
-    }),
+const client = new Client({});
+
+client.on('ready', async () => {
+    console.log('Client is ready!');
 });
 
-client.initialize().then(() => console.log('Client is ready'));
+client.on('qr', (qr) => {
+    qrcode.generate(qr, { small: true });
+});
+
+client.initialize();
+
 export default client;
