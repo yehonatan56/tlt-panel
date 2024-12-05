@@ -1,3 +1,5 @@
+//
+
 import { Client } from 'whatsapp-web.js';
 import qrcode from 'qrcode-terminal';
 
