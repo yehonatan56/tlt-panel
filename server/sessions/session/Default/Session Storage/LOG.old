@@ -1,2 +1,3 @@
-2024/12/05-17:16:35.177 c844 Creating DB C:\Users\pc\WebstormProjects\tlt-panel2\server\sessions\session\Default\Session Storage since it was missing.
-2024/12/05-17:16:35.200 c844 Reusing MANIFEST C:\Users\pc\WebstormProjects\tlt-panel2\server\sessions\session\Default\Session Storage/MANIFEST-000001
+2024/12/05-21:57:26.857 8d4c Reusing MANIFEST C:\Users\pc\WebstormProjects\tlt-panel2\server\sessions\session\Default\Session Storage/MANIFEST-000001
+2024/12/05-21:57:26.858 8d4c Recovering log #3
+2024/12/05-21:57:26.859 8d4c Reusing old log C:\Users\pc\WebstormProjects\tlt-panel2\server\sessions\session\Default\Session Storage/000003.log 

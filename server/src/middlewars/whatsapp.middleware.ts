@@ -9,7 +9,7 @@ export const whatsappMW = async (req, res, next) => {
     email: ${req.body.email}
     address: ${req.body.address}
     city: ${req.body.city}
-    pickup method: ${req.body.pickupMethod}  
+    pickup method: ${req.body.pickupMethod}
     `;
     await client.sendMessage(WHATSAPP_GROUP_ID, message);
 
