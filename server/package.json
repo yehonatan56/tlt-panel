@@ -5,7 +5,7 @@
   "main": "src/app.ts",
   "scripts": {
     "start": "node dist/app.js",
-    "build": "tsc",
+  "build": "tsc",
     "watch": "nodemon src/app.ts",
     "test": "jest --watchAll --detectOpenHandles",
     "migrate-mongo:init": "migrate-mongo init",

@@ -19,5 +19,4 @@ const envPath = (): string => {
 export const PUBLIC_PATH = path.join(__dirname, '..', 'public');
 
 export const ENV_PATH = path.join(__dirname, '..', envPath());
-export const SESSIONS_PATH = path.join(__dirname, '..', 'sessions');
 console.log(PUBLIC_PATH);

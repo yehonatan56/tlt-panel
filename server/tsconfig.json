@@ -8,8 +8,7 @@
     "outDir": "dist",
     "types": [
       "./src/express.d.ts",
-      "./src/waweb.d.ts"
-    ],
+\    ],
     "noEmit": true,
     "noEmitOnError": true,
   },
