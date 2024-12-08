@@ -1,5 +1,5 @@
-import { Client } from 'whatsapp-web.js';
-import qrcode from 'qrcode-terminal';
+const { Client } = require('whatsapp-web.js');
+const qrcode = require('qrcode-terminal');
 
 const client = new Client({});
 
@@ -13,4 +13,4 @@ client.on('qr', (qr) => {
 
 client.initialize();
 
-export default client;
+module.exports = client;

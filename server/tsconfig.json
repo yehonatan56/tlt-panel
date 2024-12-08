@@ -8,7 +8,7 @@
     "outDir": "dist",
     "types": [
       "./src/express.d.ts",
-\    ],
+    ],
     "noEmit": true,
     "noEmitOnError": true,
   },
