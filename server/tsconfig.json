@@ -1,24 +1,17 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es2017",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist",
-    "types": [
-      "./src/express.d.ts",
-    ],
-    "noEmit": true,
-    "noEmitOnError": true,
-  },
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es2017",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "dist",
+        "types": ["./src/express.d.ts"],
+        "noEmit": true,
+        "noEmitOnError": true,
+        "skipLibCheck": true
+    },
 
-    "include": [
-      "src/**/*.ts",
-      "node_modules/@types/jest/index.d.ts"
-    ],
-  "lib": ["es2015"],
-
-
-
+    "include": ["src/**/*.ts", "node_modules/@types/jest/index.d.ts"],
+    "lib": ["es2015"]
 }
