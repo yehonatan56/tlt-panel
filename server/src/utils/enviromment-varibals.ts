@@ -1,8 +1,3 @@
-import dotenv from 'dotenv';
-import { ENV_PATH } from '../paths';
-
-dotenv.config({ path: ENV_PATH });
-
 const CONNECTION_STRING = 'mongodb+srv://root:A12345a@cluster0.ivjfmh6.mongodb.net/tlt';
 const NODE_ENV = 'production';
 const CLOUDINARY_CLOUD_NAME = 'dk5irlhb0';
