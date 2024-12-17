@@ -2,13 +2,16 @@
 // const qrcode = require('qrcode-terminal');
 
 // @ts-ignore
-import { Client } from 'whatsapp-web.js';
+import { Client, LocalAuth } from 'whatsapp-web.js';
 import qrcode from 'qrcode-terminal';
+import logger from './logger';
 
-const client = new Client({});
+const client = new Client({
+    authStrategy: new LocalAuth(),
+});
 
 client.on('ready', async () => {
-    console.log('Client is ready!');
+    logger.info('', 'Client is ready!');
 });
 
 client.on('qr', (qr) => {
