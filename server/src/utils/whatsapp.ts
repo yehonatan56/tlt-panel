@@ -7,7 +7,6 @@ import qrcode from 'qrcode-terminal';
 import logger from './logger';
 
 const client = new Client({
-    authStrategy: new LocalAuth(),
 });
 
 client.on('ready', async () => {
