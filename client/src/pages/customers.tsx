@@ -43,7 +43,12 @@ const Customers = () => {
         </thead>
         <tbody>
           {customers.map((customer, index) => (
-            <tr key={index}>
+            <tr
+              key={index}
+              style={{
+                maxWidth: "100ox",
+              }}
+            >
               <td>{customer.firstName}</td>
               <td>{customer.lastName}</td>
               <td>{customer.email}</td>
