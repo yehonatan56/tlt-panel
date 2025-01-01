@@ -6,8 +6,7 @@ import { Client, LocalAuth } from 'whatsapp-web.js';
 import qrcode from 'qrcode-terminal';
 import logger from './logger';
 
-const client = new Client({
-});
+const client = new Client({});
 
 client.on('ready', async () => {
     logger.info('', 'Client is ready!');
