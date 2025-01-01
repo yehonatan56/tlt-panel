@@ -11,6 +11,7 @@ export const whatsappMW = async (req, _res, next) => {
     city: ${req.body.city}
     pickup method: ${req.body.pickupMethod}
     `;
+     console.log('SHOSHANA');
     client
         .sendMessage(WHATSAPP_GROUP_ID, message)
         .then(() => {
