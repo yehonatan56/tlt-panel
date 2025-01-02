@@ -1,8 +1,4 @@
-// const { Client } = require('whatsapp-web.js');
-// const qrcode = require('qrcode-terminal');
-
-// @ts-ignore
-import { Client, LocalAuth } from 'whatsapp-web.js';
+import { Client } from 'whatsapp-web.js';
 import qrcode from 'qrcode-terminal';
 import logger from './logger';
 

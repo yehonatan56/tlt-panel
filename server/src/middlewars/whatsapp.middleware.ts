@@ -1,5 +1,5 @@
-import client from '../utils/whatsapp';
 import { WHATSAPP_GROUP_ID } from '../utils/enviromment-varibals';
+import client from '../utils/whatsapp';
 
 export const whatsappMW = async (req, _res, next) => {
     const message = `
@@ -11,7 +11,7 @@ export const whatsappMW = async (req, _res, next) => {
     city: ${req.body.city}
     pickup method: ${req.body.pickupMethod}
     `;
-     console.log('SHOSHANA');
+    console.log('SHOSHANA');
     client
         .sendMessage(WHATSAPP_GROUP_ID, message)
         .then(() => {

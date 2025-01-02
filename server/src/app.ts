@@ -3,9 +3,8 @@ import configExpress from './config/express';
 import connectDB from './config/db';
 import logger from './utils/logger';
 import { PORT } from './utils/enviromment-varibals';
-
+import './utils/whatsapp';
 const app = express();
-
 connectDB()
     .then(() => configExpress(app))
     .then(() => {
@@ -18,3 +17,4 @@ connectDB()
     });
 
 export default app;
+// export const client = client;
