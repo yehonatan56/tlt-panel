@@ -5,6 +5,8 @@ import logger from './utils/logger';
 import { PORT } from './utils/enviromment-varibals';
 import './utils/whatsapp';
 const app = express();
+
+logger.info('', 'Starting server...');
 connectDB()
     .then(() => configExpress(app))
     .then(() => {
