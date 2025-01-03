@@ -12,6 +12,4 @@ client.on('qr', (qr) => {
     qrcode.generate(qr, { small: true });
 });
 
-client.initialize();
-
 export default client;
