@@ -3,13 +3,11 @@ import configExpress from './config/express';
 import connectDB from './config/db';
 import logger from './utils/logger';
 import { PORT } from './utils/enviromment-varibals';
-import { connectClient } from './utils/whatsapp';
 const app = express();
 
 logger.info('', 'Starting server...');
 
 connectDB()
-    .then(() => connectClient())
     .then(() => configExpress(app))
     .then(() => {
         app.listen(PORT, () => {
