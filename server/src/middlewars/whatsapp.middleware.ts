@@ -1,5 +1,4 @@
-import { WHATSAPP_GROUP_ID } from '../utils/enviromment-varibals';
-import client from '../utils/whatsapp';
+import { TOKEN, WHATSAPP_GROUP_ID } from '../utils/enviromment-varibals';
 
 export const whatsappMW = async (req, _res, next) => {
     const message = `
@@ -12,14 +11,22 @@ export const whatsappMW = async (req, _res, next) => {
     pickup method: ${req.body.pickupMethod}
     `;
     console.log('SHOSHANA');
-    client
-        .sendMessage(WHATSAPP_GROUP_ID, message)
-        .then(() => {
-            console.log('Message sent');
-        })
-        .catch((err) => {
-            console.log('Error sending message', err);
-        });
+    fetch('https://gate.whapi.cloud/messages/text', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            Authorization: 'Bearer ' + TOKEN,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            typing_time: 0,
+            to: WHATSAPP_GROUP_ID,
+            body: message,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => console.log('Success:', data))
+        .catch((error) => console.error('Error:', error));
 
     next();
 };

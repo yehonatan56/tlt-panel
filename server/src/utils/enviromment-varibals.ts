@@ -11,7 +11,7 @@ const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET;
 const SECRET = process.env.SECRET || 'secret';
 const WHATSAPP_GROUP_ID = process.env.WHATSAPP_GROUP_ID;
 const PORT = process.env.PORT || 3000;
-
+const TOKEN = process.env.TOKEN;
 export {
     CONNECTION_STRING,
     NODE_ENV,
@@ -21,4 +21,5 @@ export {
     SECRET,
     WHATSAPP_GROUP_ID,
     PORT,
+    TOKEN,
 };
