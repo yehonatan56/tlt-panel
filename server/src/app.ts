@@ -2,13 +2,13 @@ import express from 'express';
 import configExpress from './config/express';
 import connectDB from './config/db';
 import logger from './utils/logger';
-import { PORT } from './utils/enviromment-varibals';
+import { CONNECTION_STRING, PORT } from './utils/enviromment-varibals';
 
 const app = express();
 
 logger.info('', 'Starting server...');
 
-connectDB()
+connectDB(CONNECTION_STRING)
     .then(() => configExpress(app))
     .then(() => {
         app.listen(PORT, () => {

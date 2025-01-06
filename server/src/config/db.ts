@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
 import logger from '../utils/logger';
-import { CONNECTION_STRING } from '../utils/enviromment-varibals';
 
-const connectDB = async () => {
-    const url: string = CONNECTION_STRING;
+const connectDB = async (url: string) => {
     logger.info('', 'Connecting to the database', { url });
     if (!url) {
         logger.error('', 'No connection string provided');
