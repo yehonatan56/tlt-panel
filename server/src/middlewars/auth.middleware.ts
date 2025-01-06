@@ -22,7 +22,6 @@ export const isAuthorizedUserMW = async (req: Request, res: Response, next: Next
 };
 
 export const isAdminUserMW = (req: Request, res: Response, next: NextFunction) => {
-    // @ts-ignore
     if (req.user.role !== 'admin') {
         res.status(401).json({ message: 'Unauthorized' });
         return;

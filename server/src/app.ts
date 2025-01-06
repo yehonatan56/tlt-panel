@@ -3,6 +3,7 @@ import configExpress from './config/express';
 import connectDB from './config/db';
 import logger from './utils/logger';
 import { PORT } from './utils/enviromment-varibals';
+
 const app = express();
 
 logger.info('', 'Starting server...');
@@ -19,4 +20,3 @@ connectDB()
     });
 
 export default app;
-// export const client = client;

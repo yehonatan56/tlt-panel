@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { loginServiceHandler } from '../services/auth.service';
 import logger from '../utils/logger';
 
-export const loginCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const loginCtrl = async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
     try {
         const { username, password } = req.body;
         const { message, status, token } = await loginServiceHandler({ username, password });

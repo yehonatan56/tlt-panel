@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { getUsernamesServiceHandler, registerServiceHandler } from '../services/users.service';
 
-const getUsernamesCtrl = async (_req: Request, res: Response, next: NextFunction) => {
+const getUsernamesCtrl = async (_req: Request, res: Response, _next: NextFunction) => {
     try {
         const users = await getUsernamesServiceHandler();
         res.send(users);
@@ -10,7 +10,7 @@ const getUsernamesCtrl = async (_req: Request, res: Response, next: NextFunction
     }
 };
 
-const registerCtrl = async (req: Request, res: Response, next: NextFunction) => {
+const registerCtrl = async (req: Request, res: Response, _next: NextFunction) => {
     try {
         const users = await registerServiceHandler(req.body);
         res.send(users);
