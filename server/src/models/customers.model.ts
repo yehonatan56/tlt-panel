@@ -33,6 +33,7 @@ const customerSchema = new mongoose.Schema<ICustomer>(
             default: 1,
         },
         pickupMethod: {
+            // todo: change to enum option
             type: String,
             required: [true, 'Pickup method is required'],
         },

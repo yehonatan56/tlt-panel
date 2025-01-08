@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import userModel from '../models/users.model';
 import { SECRET } from '../utils/enviromment-varibals';
+
 export const isAuthorizedUserMW = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
     const token = req.headers.authorization || req.cookies.token;
     if (!token) {

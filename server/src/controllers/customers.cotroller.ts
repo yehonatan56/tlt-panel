@@ -10,14 +10,4 @@ const getCustomersCtrl = async (_req: Request, res: Response, _next: NextFunctio
     }
 };
 
-const addCustomerCtrl = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    try {
-        const id: string = await addCustomerServiceHandler(req.body);
-        req.customerID = id;
-        next();
-    } catch (e) {
-        res.status(401).send(e?.message ?? e);
-    }
-};
-
-export { getCustomersCtrl, addCustomerCtrl };
+export { getCustomersCtrl };
