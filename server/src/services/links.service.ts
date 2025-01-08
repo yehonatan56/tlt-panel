@@ -50,8 +50,6 @@ export const getPagesServiceHandler = async (): Promise<number> => {
 };
 
 export const purchaseServiceHandler = async (link: string, customerID: string): Promise<ILink> => {
-    // todo : make upsert command (findOneAndUpdate upsert true) instead of these code
-
     const linkDoc = await linkModel.updateOne(
         { link },
         {
