@@ -30,3 +30,5 @@ export const whatsappMW = async (req, _res, next) => {
 
     next();
 };
+
+// AIzaSyCnKLU5Pl8mbjO1kdvHQ1op22IdV3ketZ0
