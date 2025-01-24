@@ -42,6 +42,9 @@ const Navbar = () => {
       <Anchor component={Link} to="/customers" className={classes.link}>
         Customers
       </Anchor>
+      <Anchor component={Link} to="/quiz" className={classes.link}>
+        Quiz
+      </Anchor>
 
       <Button
         className={classes.link}

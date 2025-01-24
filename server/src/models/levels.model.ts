@@ -9,7 +9,7 @@ const levelSchema = new mongoose.Schema<ILevel>(
         },
         image: {
             type: String,
-            required: [true, 'Image is required'],
+            // required: [true, 'Image is required'],
         },
         index: {
             type: Number,

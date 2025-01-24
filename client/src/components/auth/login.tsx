@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <div className="form-container">
       <Formik
-        initialValues={{ username: "", password: "" }}
+        initialValues={{ username: "admin", password: "admin" }}
         validationSchema={Yup.object({
           username: Yup.string()
             .max(15, "Must be 15 characters or less")

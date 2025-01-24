@@ -1,10 +1,10 @@
 import express from 'express';
 import { getQuestionsCtrl, addQuestionCtrl } from '../controllers/questions.controller';
-import { isAdminUserMW } from '../middlewars/auth.middleware';
+import { isAdminUserMW, isAuthorizedUserMW } from '../middlewars/auth.middleware';
 
 const router = express.Router();
 
-router.get('/', getQuestionsCtrl);
-router.post('/', isAdminUserMW, addQuestionCtrl);
+router.get('/:level', getQuestionsCtrl);
+router.post('/', isAuthorizedUserMW, isAdminUserMW, addQuestionCtrl);
 
 export default router;

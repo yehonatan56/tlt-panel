@@ -31,7 +31,6 @@ const questionSchema = new mongoose.Schema<IQuestion>(
         },
         image: {
             type: String,
-            required: [true, 'Image is required'],
         },
     },
     { timestamps: true }

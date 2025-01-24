@@ -7,6 +7,7 @@ declare global {
             user?: IUser;
             userId?: string;
             customerID?: string;
+            image?: string;
         }
     }
 }

@@ -17,6 +17,7 @@ export default (app: Application) => {
     routes(app);
 
     app.use((err, _req: Request, _res: Response, _next: NextFunction) => {
-        logger.error('', err.message, err.stack);
+        console.error(err);
+        //logger.error('', err.message, err.stack);
     });
 };

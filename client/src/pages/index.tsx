@@ -6,6 +6,7 @@ import Header from "../components/header";
 import Register from "../components/auth/register.tsx";
 import Auth from "../components/auth/auth.tsx";
 import Customers from "./customers.tsx";
+import Quiz from "./quiz.tsx";
 
 const PagesIndex = () => {
   const router = createBrowserRouter([
@@ -53,6 +54,16 @@ const PagesIndex = () => {
         <Header>
           <Auth>
             <Customers />
+          </Auth>
+        </Header>
+      ),
+    },
+    {
+      path: "/quiz",
+      element: (
+        <Header>
+          <Auth>
+            <Quiz />
           </Auth>
         </Header>
       ),

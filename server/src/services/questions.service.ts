@@ -2,8 +2,7 @@ import { IQuestion } from '../interfaces/question.interface';
 import questionsModel from '../models/questions.model';
 import levelsModel from '../models/levels.model';
 
-export const getQuestionsServiceHandler = async (levelName: string): Promise<IQuestion[]> => {
-    const levelID = await levelsModel.findOne({ name: levelName });
+export const getQuestionsServiceHandler = async (levelID: string): Promise<IQuestion[]> => {
     return questionsModel.find({ level: levelID });
 };
 

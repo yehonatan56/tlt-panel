@@ -12,7 +12,7 @@
         "migrate-mongo:up": "migrate-mongo up",
         "migrate-mongo:down": "migrate-mongo down",
         "migrate-mongo:status": "migrate-mongo status",
-        "migrate-mongo:create": "migrate-mongo create purchase field"
+        "migrate-mongo:create": "migrate-mongo create default user"
     },
     "author": "",
     "license": "ISC",
