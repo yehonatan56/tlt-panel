@@ -59,7 +59,7 @@ export const getPagesCtrl = async (_req: Request, res: Response, _next: NextFunc
 export const uploadCtrl = async (req: Request, res: Response, _next: NextFunction): Promise<any> => {
     if (!req.file) return res.sendStatus(400); // If there's no image, respond with bad request error
 
-    const publicId = `${generateV4UUID()}-${req.file.originalname}.png`;
+    const publicId = `${generateV4UUID()}-${req.file.originalname}`;
     try {
         // Base 64 encode the file to create a data URI for the uploader
         const base64EncodedImage = Buffer.from(req.file.buffer).toString('base64');

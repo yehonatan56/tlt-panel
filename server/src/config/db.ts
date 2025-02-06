@@ -13,7 +13,7 @@ const connectDB = async (url: string) => {
             logger.info('', 'Connected to the database');
         })
         .catch((err) => {
-            logger.error('', 'Failed to connect to the database', { error: err });
+            logger.error('', 'Failed to c!onnect to the database', { error: err });
         });
 };
 
