@@ -6,6 +6,7 @@ import { addLevel, getLevels } from "../requests/levels.ts";
 import { useFilePreview } from "../hooks/useFilePreview.tsx";
 import { addQuestionRequest, getQuestions } from "../requests/questions.ts";
 import { question } from "../types.ts";
+import { uploadFileRequest } from "../requests/links.ts";
 
 interface IncorrectAnswers {
   incorrectAnswer1: string;
@@ -18,6 +19,7 @@ export default function Quiz() {
   const [levelName, setLevelName] = useState<string>("");
   const [levelImage, setLevelImage] = useState<File | null>(null);
   const [question, setQuestion] = useState<string>("");
+  const [questionImage, setQuestionImage] = useState<File | null>(null);
   const [questions, setQuestions] = useState<question[] | null>(null);
   const [correctAnswer, setCorrectAnswer] = useState<string>("");
   const [incorrectAnswers, setIncorrectAnswers] = useState<IncorrectAnswers>({
@@ -27,13 +29,15 @@ export default function Quiz() {
   });
   const [opened, { open, close }] = useDisclosure(false);
   const file = useRef<HTMLInputElement | null>(null);
+  const questionFile = useRef<HTMLInputElement | null>(null);
   const preview = useFilePreview(levelImage);
+  const questionPreview = useFilePreview(questionImage);
 
   const submitLevel = async () => {
     const uploadData = new FormData();
     uploadData.append("file", levelImage as Blob);
-    // const url = await uploadFileRequest(uploadData);
-    const res = await addLevel({ name: levelName });
+    const url = await uploadFileRequest(uploadData);
+    const res = await addLevel({ name: levelName, image: url });
     console.log(res);
     setLevelName("");
     setLevelImage(null);
@@ -41,6 +45,9 @@ export default function Quiz() {
   };
   const addQuestion = async (e: any) => {
     e.preventDefault();
+    const uploadData = new FormData();
+    uploadData.append("file", questionImage as Blob);
+    const url = await uploadFileRequest(uploadData);
 
     const res = await addQuestionRequest({
       level: id,
@@ -49,6 +56,7 @@ export default function Quiz() {
       incorrectAnswer1: incorrectAnswers.incorrectAnswer1,
       incorrectAnswer2: incorrectAnswers.incorrectAnswer2,
       incorrectAnswer3: incorrectAnswers.incorrectAnswer3,
+      image: url,
     }).then((data) => data);
     console.log(res);
     setQuestion("");
@@ -58,6 +66,8 @@ export default function Quiz() {
       incorrectAnswer2: "",
       incorrectAnswer3: "",
     });
+
+    setQuestionImage(null);
   };
 
   useEffect(() => {
@@ -189,8 +199,27 @@ export default function Quiz() {
               }
               style={{ width: "100%" }}
             />
+            <input
+              type="file"
+              name="file"
+              id="file"
+              className="inputfile"
+              ref={questionFile}
+              onChange={(e) =>
+                setQuestionImage(
+                  e.currentTarget.files ? e.currentTarget.files[0] : null,
+                )
+              }
+            />
             <input type="submit" value="Submit" />
           </form>
+          {questionPreview && (
+            <img
+              src={questionPreview}
+              alt="preview"
+              style={{ width: "300px", height: "300px" }}
+            />
+          )}
         </div>
         <div>
           <h2>Questions</h2>
