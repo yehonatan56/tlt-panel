@@ -13,3 +13,7 @@
      overflow: hidden;
      text-overflow: ellipsis;
  }
+
+ .quiz > div {
+     width: 25%;
+ }

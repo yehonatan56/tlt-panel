@@ -70,13 +70,10 @@ export const getPagesRequest = async () => {
 };
 
 export const uploadFileRequest = async (file: any) => {
-  const formData = new FormData();
-  formData.append("image", file);
-
   const response = await fetch(server + "/links/upload", {
     method: "POST",
     headers: getHeaders(true),
-    body: formData,
+    body: file,
   })
     .then((res) => res.json())
     .then((data) => data);
