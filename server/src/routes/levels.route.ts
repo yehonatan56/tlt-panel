@@ -4,7 +4,9 @@ import { isAdminUserMW, isAuthorizedUserMW } from '../middlewars/auth.middleware
 
 const router = express.Router();
 
+// todo: add swagger api, see on Backend Monster course
 router.get('/', getLevelsCtrl);
+
 router.post('/', isAuthorizedUserMW, isAdminUserMW, addLevelCtrl);
 
 export default router;

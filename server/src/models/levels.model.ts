@@ -11,6 +11,7 @@ const levelSchema = new mongoose.Schema<ILevel>(
             type: String,
             // required: [true, 'Image is required'],
         },
+        // todo: getting data sorted by createdAt field, no need for this index field!
         index: {
             type: Number,
             required: [true, 'Index is required'],

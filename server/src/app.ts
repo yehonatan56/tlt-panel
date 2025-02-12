@@ -7,9 +7,10 @@ import { CONNECTION_STRING, PORT } from './utils/enviromment-varibals';
 const app = express();
 
 logger.info('', 'Starting server...');
-app.get("/", (_req,res) => {
-    res.send("OK");
-})
+
+app.get('/', (_req, res) => {
+    res.send('OK');
+});
 
 connectDB(CONNECTION_STRING)
     .then(() => configExpress(app))

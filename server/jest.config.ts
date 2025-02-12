@@ -1,19 +1,20 @@
-import type { Config } from "jest";
+import type { Config } from 'jest';
 
 const config: Config = {
-  preset: "ts-jest",
-  testEnvironment: "node",
-  testMatch: ["**/__tests__/**/*.ts", "**/?(*.)+(spec|test).ts"],
-  moduleFileExtensions: ["ts", "js", "json", "node"],
-  globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.json",
+    preset: 'ts-jest',
+    testEnvironment: 'node',
+    testMatch: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
+    moduleFileExtensions: ['ts', 'js', 'json', 'node'],
+    globals: {
+        'ts-jest': {
+            tsconfig: 'tsconfig.json',
+        },
     },
-  },
-  collectCoverage: true,
-  collectCoverageFrom: ["src/**/*.ts"],
-  coverageDirectory: "coverage",
-  setupFilesAfterEnv: ["<rootDir>/src/utils/jest.ts"],
+    collectCoverage: true,
+    collectCoverageFrom: ['src/**/*.ts'],
+    coverageDirectory: 'coverage',
+    // todo: change jest.ts file to setup-tests.ts file in the root of project (side to src folder)
+    setupFilesAfterEnv: ['<rootDir>/src/utils/jest.ts'],
 };
 
 export default config;
