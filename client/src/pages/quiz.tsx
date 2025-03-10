@@ -37,7 +37,10 @@ export default function Quiz() {
     const uploadData = new FormData();
     uploadData.append("image", levelImage as Blob);
     const url = await uploadFileRequest(uploadData);
-    const res = await addLevel({ name: levelName, image: url });
+    const res = await addLevel({
+      name: levelName,
+      image: url ? url : undefined,
+    });
     console.log(res);
     setLevelName("");
     setLevelImage(null);
@@ -56,7 +59,7 @@ export default function Quiz() {
       incorrectAnswer1: incorrectAnswers.incorrectAnswer1,
       incorrectAnswer2: incorrectAnswers.incorrectAnswer2,
       incorrectAnswer3: incorrectAnswers.incorrectAnswer3,
-      image: url,
+      image: url ? url : undefined,
     }).then((data) => data);
     console.log(res);
     setQuestion("");
