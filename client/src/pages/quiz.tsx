@@ -36,7 +36,7 @@ export default function Quiz() {
   const submitLevel = async () => {
     const uploadData = new FormData();
     uploadData.append("image", levelImage as Blob);
-    const url = await uploadFileRequest(uploadData);
+    const url = levelImage && (await uploadFileRequest(uploadData));
     const res = await addLevel({
       name: levelName,
       image: url ? url : undefined,
@@ -50,7 +50,7 @@ export default function Quiz() {
     e.preventDefault();
     const uploadData = new FormData();
     uploadData.append("image", questionImage as Blob);
-    const url = await uploadFileRequest(uploadData);
+    const url = questionImage && (await uploadFileRequest(uploadData));
 
     const res = await addQuestionRequest({
       level: id,
