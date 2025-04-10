@@ -8,6 +8,8 @@ declare global {
             userId?: string;
             customerID?: string;
             image?: string;
+            location?: 'rishon' | 'zefat' | false;
+            pickupId?: string;
         }
     }
 }

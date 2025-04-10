@@ -1,6 +1,17 @@
 import { TOKEN, WHATSAPP_GROUP_ID } from '../utils/enviromment-varibals';
 import convertPhone from '../functions/convertPhone';
+import { SERVER_URL } from '../utils/consts';
 export const whatsappMW = async (req, _res, next) => {
+    let locationMessage = '';
+
+    if (req.location === 'zefat') {
+        locationMessage = 'יש לאסוף מרחוב הר גלבוע 30 צפת יש לתאם עם שושנה 0553151517';
+    } else if (req.location === 'rishon') {
+        locationMessage = 'יש לאסוף מרחוב דוד המלך 56 ראשון לציון יש לתאם עם רינה 0528997421';
+    }
+
+    req.location && (locationMessage += `\n\n${SERVER_URL}/pickup/${req.pickupId}`);
+
     const message = ` new purchase:
     name: ${req.body.firstName} ${req.body.lastName}
     phone: ${req.body.phone}
@@ -15,6 +26,7 @@ export const whatsappMW = async (req, _res, next) => {
     יש לנו קבוצת וואטסאפ שקטה ללקוחות, תוכל להצטרף ולקבל עדכונים ומבצעים מיוחדים.
     להצטרפות לחץ על הקישור הבא:
 https://chat.whatsapp.com/LEtTIFqBZQtE8JCMUJEBfg
+    ${locationMessage}
     תודה רבה,
     לפניות  נוספות ניתן לפנות אלינו בטלפון: 055-315-1517
     `;
@@ -51,5 +63,3 @@ https://chat.whatsapp.com/LEtTIFqBZQtE8JCMUJEBfg
 
     next();
 };
-
-// AIzaSyCnKLU5Pl8mbjO1kdvHQ1op22IdV3ketZ0

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>אישור איסוף</title>
+    </head>
+    <body>
+        <img
+            src="https://thelosttreasures.net/wp-content/uploads/2023/07/logo1.png"
+            alt="Logo"
+            style="width: 200px; height: auto; margin-bottom: 20px"
+        />
+        <h1>אישור איסוף</h1>
+        <form id="pickupForm">
+            <input type="number" id="pickupId" placeholder="הכנס קוד " required />
+            <input id="confirmButton" type="submit" value="אשר איסוף" />
+        </form>
+
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                height: 100vh;
+                background-color: #f0f0f0;
+            }
+
+            #confirmButton {
+                padding: 70px;
+                font-size: 25px;
+                color: white;
+                background-color: #007bff;
+                border: none;
+                border-radius: 50px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                margin: 20px 0;
+            }
+
+            #confirmButton:hover {
+                background-color: #0056b3;
+            }
+
+            #pickupForm {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        </style>
+        <script>
+            document.getElementById('pickupForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const pickupId = document.getElementById('pickupId').value;
+
+                // Assuming the server endpoint is explicitly stated if it's different from the current page URL
+                const endpoint = window.location.href; // Change this if needed
+
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        code: pickupId,
+                        id: new URLSearchParams(location.search).get('id'), // Assuming you want the 'id' query parameter
+                    }),
+                })
+                    .then((response) => {
+                        if (response.status === 400) {
+                            alert('קוד לא תקין'); // Error handling for bad request
+                            return;
+                        }
+                        alert('אישור הצליח'); // Success message
+                        return response.json(); // Process the valid response
+                    })
+                    .then((data) => {
+                        // Add logic here to handle the data, e.g., updating the UI or redirecting
+                        console.log('Success:', data); // Example action
+                    })
+                    .catch((error) => console.error('Error:', error));
+            });
+        </script>
+    </body>
+</html>

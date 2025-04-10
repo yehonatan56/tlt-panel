@@ -20,4 +20,4 @@ const envPath = (): string => {
 export const PUBLIC_PATH = path.join(__dirname, '..', 'public');
 
 export const ENV_PATH = path.join(__dirname, '..', envPath());
-console.log(PUBLIC_PATH);
+export const PICKUP_PATH = path.join(__dirname, '..', 'public', 'pickup', 'index.html');
