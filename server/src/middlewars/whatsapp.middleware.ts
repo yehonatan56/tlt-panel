@@ -51,5 +51,3 @@ https://chat.whatsapp.com/LEtTIFqBZQtE8JCMUJEBfg
 
     next();
 };
-
-// AIzaSyCnKLU5Pl8mbjO1kdvHQ1op22IdV3ketZ0
