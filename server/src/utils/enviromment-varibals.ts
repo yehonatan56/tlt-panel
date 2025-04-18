@@ -10,7 +10,6 @@ const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
 const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET;
 const SECRET = process.env.SECRET || 'secret';
 const WHATSAPP_GROUP_ID = process.env.WHATSAPP_GROUP_ID;
-const WHATSAPP_GROUP_ID_COMMUNITY = process.env.WHATSAPP_GROUP_ID_COMMUNITY;
 const PORT = process.env.PORT || 3000;
 const TOKEN = process.env.TOKEN;
 export {
@@ -21,7 +20,6 @@ export {
     CLOUDINARY_API_SECRET,
     SECRET,
     WHATSAPP_GROUP_ID,
-    WHATSAPP_GROUP_ID_COMMUNITY,
     PORT,
     TOKEN,
 };
