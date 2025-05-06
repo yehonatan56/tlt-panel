@@ -35,7 +35,7 @@ https://chat.whatsapp.com/LEtTIFqBZQtE8JCMUJEBfg
         .then((data) => console.log('Success:', data))
         .catch((error) => console.error('Error:', error));
 
-    fetch('https://gate.whapi.cloud/messages/text', {
+    /*    fetch('https://gate.whapi.cloud/messages/text', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -48,6 +48,6 @@ https://chat.whatsapp.com/LEtTIFqBZQtE8JCMUJEBfg
             body: messageToCustomer,
         }),
     });
-
+*/
     next();
 };
