@@ -5,7 +5,7 @@ import {
 } from "../requests/links.ts";
 
 export const addLinkLogic = async (link: string, file: any) => {
-  const image = await uploadFileRequest(file);
+  const image = file ? await uploadFileRequest(file) : "";
   console.log(image);
   const response = await addLinkRequest(link, image);
   return response;
