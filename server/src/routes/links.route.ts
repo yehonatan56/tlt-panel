@@ -22,7 +22,7 @@ router.get('/', isAuthorizedUserMW, getLinksCtrl);
 router.get('/pages', isAuthorizedUserMW, getPagesCtrl);
 router.get('/highest', isAuthorizedUserMW, getHighestPurchasesCtrl);
 router.post('/', isAuthorizedUserMW, createLinkCtrl);
-router.post('/purchase', purchaseLimiter, addCustomerIfNotExistsMW, whatsappMW, purchaseCtrl);
+router.post('/purchase', addCustomerIfNotExistsMW, whatsappMW, purchaseCtrl);
 
 router.post('/upload', isAuthorizedUserMW, upload.single('image'), uploadCtrl);
 router.put('/:id', isAuthorizedUserMW, editLinkCtrl);
