@@ -49,7 +49,8 @@ export const getPagesServiceHandler = async (): Promise<number> => {
     return pages;
 };
 
-export const purchaseServiceHandler = async (link: string, customerID: string): Promise<ILink> => {
+export const purchaseServiceHandler = async (link: string, customerID: string): Promise<ILink> => {\
+    console.log(`Purchasing link: ${link} for customer ID: ${customerID}`);
     const linkDoc = await linkModel.updateOne(
         { link },
         {
